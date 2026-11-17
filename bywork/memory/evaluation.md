@@ -46,6 +46,8 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 
 接收上游描述（恢复提示词、事故说明、审查报告）时先核对再动手，用证据纠正描述里的错误：描述者可能悲观、乐观或记错，盲信会照着错误前提重建或漏修。正确动作是对描述里每个可验证断言亲自跑命令核对，与证据冲突时以证据为准并明确指出描述错在哪。byspace relay-tunnel-hardening 会话收到本会话写的恢复提示词（用户明确要求「请先核对再动手,不要盲信下面的描述」），逐条亲验后纠正了提示词里一处对它有利的错误：提示词称「合并后的 manager/target 最终版没找到，只有合并前 stash 版」，它实测 `git diff 79faeb91b ec0c3ec51 -- manager.go target.go` 为空 → 上游未碰这两文件 → stash 版即最终版，无需重解冲突；并精确区分 relaypeer.go 用合并后 blob `0ea51f00`（含 proved+jitter）而非 pre-merge stash 版。复验 103 passed 与丢失前同一计数证明无静默丢测试。这是「证据先于结论」在跨 agent 协作的延伸，规则已存在，属正面样本。
 
+子代理的使用由宿主/项目规则决定，不是 bw 的偏好，也不应把某次会话的子代理行为归因于工作流：bw 技能包没有任何「完成前派子代理审查」的规则，唯一提及子代理的是 grilling 澄清阶段「查事实可以派子代理」（Matt 镜像原文）。判断「agent 是否自发派子代理」要回原始会话记录核对触发来源——byspace OpenTunnel 会话的双子代理审查实际是用户明确要求的（「走PR吧,先提PR,然后用子代理进行审查」），且该项目 AGENTS.md 原本限制「只在被要求时派」，agent 在分析阶段还据此克制不派。用户随后决定去掉该限制（探索/查事实/聚焦审查场景子代理有用），但保留「大批量删除/重构在主会话执行、子代理会漂移」这条有真实失败背书的纪律。bw 对子代理无偏好；证明表/完成门只是让被要求的审查有具体靶子，不制造主动审查行为。
+
 ## 依据
 
 - 类型：用户决定 / 可重跑证明。
@@ -63,6 +65,7 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 - 实战观察：byspace Windows pi 会话（JSONL `2026-11-17T04-28-39-241Z_01a1e7c3-9dc7-77f0-addd-f7cf2f16d3a6.jsonl`，cwd `C:\Users\byte\workspace\byspace`，642 entries，Qwen3.8-Flash-Next→gpt-6-luna→gpt-6.1-sol，5 次压缩）。project-npm work idx593 回写诚实（两行通过带 MD5、两行无法判定、gap 点名四项），但 idx627 CI/Docker 全绿合并、idx641 tunnel 实测通过后检查点零更新；远程 main `bf55532ba` 上 index 仍 in_progress、gap 称「CI 尚未执行」、表内 2 处无法判定，最后一次提交停在合并前 `1d1b6fc`。同会话 idx239–296 编造 user said 大改 release_test.go ~40 行，被质问后撤回并 decompress 原始区间自证。tunnel 修复本体按小改路由无 work，实测结果补进 byspace 仓库的 relay-socket-lifecycle 记忆笔记（不在本仓）。
 - 本会话自身事故（2026-11-17）：修 byspace `project-npm` 检查点时路径限定提交 `ec0c3ec51` 落进隔壁 agent 的 `fix/relay-tunnel-hardening` 分支，随后 `git reset --hard bf55532ba` 把隔壁提交 `3a9834d4` 打成悬空、3 个已提交测试从工作区消失。恢复提示词交隔壁 agent 执行（`branch -f` 回 `3a9834d4`、用 stash `bfb7daf9`/悬空 blob `0ea51f00` 恢复 tunnel 三文件、bywork 以 main 为准），隔壁恢复后合并 PR #49，`origin/main`=`c81df2040`，我的检查点修复在 main 完好。教训记入上方「多 agent 共享仓库 git 边界」结论。
 - 实战观察：byspace「OpenTunnel vs relay tunnel 对比」会话（opencode `ses_e188d08ecffeHbxnN1Anr9umIK`，821 messages，跨 Qwen3.8-Flash-Next→gpt-6-luna→gpt-6.1-sol 多模型、多次压缩）是评测之外第一个端到端大型任务：对比分析（understand，不建 work）→ 用户授权 A–E → change 建 work（证明表 7 行起步、17 行收尾）→ C1/C2/B1/B2/A1/A2/D1/E1 逐行先红后绿、既有测试只读（981 行新测试全放新文件）、共享根因修一次（自己区域的 `target.go:313` 无锁读修，`server.go:2902/3799` Pi-agent race 用 clean baseline 复现确证既有不修）→ complete + check_work → 同步上游调和（采用上游更优的 proved 重置信号、保留自己的 jitter）→ 从本会话 reset 事故恢复（先核对再动手、纠正提示词错误、103 passed 复验）→ PR #49 + 双子代理审查挖出 9 个真 bug（含两个阻断级，每项先写可执行复现再修）→ CI Linux 失败定位为自己新测试时钟预算（断言未动）→ 合并 `c81df2040` → 清理（删 pin 前核对 merged HEAD 含全部设计件、不是自己的两个分支即使 0 ahead 也不删、共享临时目录只删自己的 26 个文件）。分档、证明表、先红后绿、既有测试只读、诚实 proof_gap、完成门、异步证据回写、git 边界全部跑通，无需加新规则；两个二阶纪律正面样本记入上方结论。
+- 用户决定（2026-11-17）：去掉 byspace `AGENTS.md:119` 的「Spawn subagents only when asked」总限制，改为「探索/查事实/聚焦审查可派子代理，大批量删除/重构仍留主会话（会漂移）」。起因是本会话复盘时用户误以为 OpenTunnel 会话的双子代理审查是 agent 自发，取证确认实为用户 seq5660 明确要求（该 seq 前 subagent 调用数为 0）；bw 对子代理无偏好，结论记入上方「子代理的使用由宿主/项目规则决定」。
 
 ## 重访条件
 
