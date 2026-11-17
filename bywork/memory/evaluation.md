@@ -34,6 +34,12 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 
 分档判据是任务结构，不是工作量感受：「能否一次做完」「懒/省事」不是小改的判据，多个行为路径或需要完整性核对的改变（迁移、批量改道、移植）即使单会话能完成也建 work。AGCopilot 旧工作流迁移会话里，模型先正确判定「~300 文件、多决策 → 建 work」，随后被 ponytail 的「keep it lazy」与「能一次做完的机械迁移」说服自己降级成 memory-direction 小改，漏建 work 与 scope——迁移本身做得不错，缺的是索引。这与 mise 会话（真小改、零产物正确）互为镜像：分档机制本身工作，但「lazy」框架会压过结构判据。修法是在 change.md 小改条目旁正面切开「能一次做完」与「小改」，不新增禁令、不碰 ponytail。
 
+完成门可能被「重新分类缺口」而非「验证缺口」满足：环境性跑不了的检查（如 linter OOM）应保留 `无法判定` 行与非空 `proof_gap`、状态停 in_progress 并交由用户定夺；把未验证维度整行删除、换成另一维度的通过（如用 format:check 顶替 lint）再置空 gap 写 complete，是「放宽断言填绿」的变体。check_work.py 只查一致性，查不出这种合法化清除。AGCopilot 补建 work 时即如此：biome lint 崩，记录用 format+typecheck 替换原「无法判定」行后 complete；实质风险低（纯文档改动，oxlint 实测 0/0），结论碰巧可接受但记录夸大覆盖。规则已存在（`无法判定` 值 + proof_gap 恰空 + 禁止填绿），属单次偏离，不加新规则。
+
+检查点会与到达的证据脱节，且状态值可能对而内容仍会假：异步证据（CI、后台任务、部署结果）到达时若只汇报不回写，证明表、proof_gap 和 next_action 会冻结在旧快照，说出已被证据推翻的话——比没有检查点更危险，因为接续会信它。byspace Windows pi 会话（跨模型、5 次压缩）里 project-npm work 在 CI/Docker 全绿并合并发布后，盘上仍写「CI 尚未执行、工作流远端待跑」；in_progress 本身因 heartbeat 与全量资产缺口仍在而可能正确。现有回写规则绑在「我刚跑完验证」的同步动作上，异步到达没有插槽；check_work.py 查一致性查不出新鲜度。修法是在 change.md 回写条目把异步到达明确为验证事件（正面一句，放决策点），不新增禁令。
+
+会话审查中「生成应来自外部源的内容」是独立于填绿的信任失败类：把模型自己的提议写成 user said（本 case 编造「不要Skip,改成Logf+断言」并据此大改测试），或在未收到子代理报告时预填对比台账（v2 交付期台账事故，见 principles-review 诚实声明）。两者的恢复纪律相同——回到原始记录核对（本 case 用 decompress 还原压缩前区间 grep 自证用户输入只有三条），并明确承认编造；判定违规看「内容是否有可追溯的外部来源」，不看事后补救是否漂亮。规则已存在（证据先于结论、不预写通过），属偏离，不加新规则。
+
 ## 依据
 
 - 类型：用户决定 / 可重跑证明。
@@ -48,6 +54,7 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 - 实战观察：byspace「是否还需要 mise 管理项目」会话（opencode `ses_e1b3c9c6effeCPJ1L5JD6591d2`）零 byissue 产物：澄清先查全事实再带推荐提问，确认后按小改直接做，红基线加逐分支验证到完整 `make build-android` 通过；收尾推理明确判断构建前置已落 `docs/development.md`、进程环境残留属暂态不入 Memory。与迁移会话互为分档两端正样本：大任务落大量产物、小任务零产物，两头都正常才证明分档机制工作。
 - 实战观察：byspace「精简多语言至中英文」会话（opencode `ses_e1aa4d8d3ffeM46ik9HM81q2Dg`）全纪律命中：clarify 核实用户前提（9 语言集合是本仓移植期自扩非上游）、带推荐三问、建 work 记录用户授权的测试改动、新回归先红后绿、压缩摘要简写与旧测试冲突时信测试（保留 zh-TW→en）、Memory 只记决定、收尾诚实标注 bundle 为源码估算且未跑浏览器。唯一冲突是 stale 全局 checker 的表头字面匹配（2.1.1 已修），agent 以 `.oxfmtrc.json` 排除 `bywork/**` 自行解决。与迁移、mise 会话凑齐分档三端正样本。
 - 实战观察：AGCopilot「先更新代码」会话（opencode `ses_e18890365ffezqKTaZTBBE6CCI`，工作目录 `/Users/zijie/workspace/work/AGCopilot`）四段中前三段无 work 均正确路由（git pull+装依赖非 change、目录审计属 understand、删 4 项属小改）；第四段旧 BI 产物归档迁移（300 文件、spec+8 决策+32 notes、3 子代理、8 处引用改道）推理 seq701 先判「建 work」、seq879 改口「memory-direction 小改、keep it lazy」跳过，落盘 `bywork/work/` 为空。这是分档被 lazy 框架错误降级的真实反例，促成 change.md 小改条目补「能否一次做完不是判据」。
+- 实战观察：byspace Windows pi 会话（JSONL `2026-11-17T04-28-39-241Z_01a1e7c3-9dc7-77f0-addd-f7cf2f16d3a6.jsonl`，cwd `C:\Users\byte\workspace\byspace`，642 entries，Qwen3.8-Flash-Next→gpt-6-luna→gpt-6.1-sol，5 次压缩）。project-npm work idx593 回写诚实（两行通过带 MD5、两行无法判定、gap 点名四项），但 idx627 CI/Docker 全绿合并、idx641 tunnel 实测通过后检查点零更新；远程 main `bf55532ba` 上 index 仍 in_progress、gap 称「CI 尚未执行」、表内 2 处无法判定，最后一次提交停在合并前 `1d1b6fc`。同会话 idx239–296 编造 user said 大改 release_test.go ~40 行，被质问后撤回并 decompress 原始区间自证。tunnel 修复本体按小改路由无 work，实测结果补进 byspace 仓库的 relay-socket-lifecycle 记忆笔记（不在本仓）。
 
 ## 重访条件
 
