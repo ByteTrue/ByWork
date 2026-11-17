@@ -1,6 +1,6 @@
-# bw 效果评测
+# bi 效果评测
 
-用真实安装的技能、pi 新会话和独立验收检查行为。代码通过、工作流通过、效率变化分别报告。
+用真实安装的技能、pi 新会话和独立验收检查行为。代码通过、工作流通过、效率变化分别报告。最初的账单评测与失败证据见[历史记录](../../bywork/work/v2-readiness/evaluation/README.md)。
 
 ## 运行一次
 
@@ -8,7 +8,7 @@
 
 ```bash
 python3 tools/evaluation/run.py \
-  --output "$TMPDIR/bw-ledger-run-01" \
+  --output "$TMPDIR/bi-ledger-run-01" \
   --model bytetrueapi/deepseek/deepseek-flash
 ```
 
@@ -19,7 +19,7 @@ Memory 筛选还有独立的正向场景：
 ```bash
 python3 tools/evaluation/run.py \
   --case tools/evaluation/cases/memory-selection \
-  --output "$TMPDIR/bw-memory-run-01" \
+  --output "$TMPDIR/bi-memory-run-01" \
   --model bytetrueapi/deepseek/deepseek-flash
 ```
 
@@ -62,9 +62,9 @@ python3 tools/evaluation/run.py \
 ```bash
 git archive "$BASELINE" skills/bw | tar -x -C "$OLD"
 python3 tools/evaluation/run.py --source "$OLD" \
-  --output "$TMPDIR/bw-old-01" --model bytetrueapi/deepseek/deepseek-flash
+  --output "$TMPDIR/bi-old-01" --model bytetrueapi/deepseek/deepseek-flash
 python3 tools/evaluation/run.py \
-  --output "$TMPDIR/bw-new-01" --model bytetrueapi/deepseek/deepseek-flash
+  --output "$TMPDIR/bi-new-01" --model bytetrueapi/deepseek/deepseek-flash
 ```
 
 同一对照使用相同用例摘要、pi 版本、模型、thinking、环境提示与验收。每个版本独立安装，两个阶段之间只共享本版本的项目文件。新旧版本都跑相关场景，避免把模型随机波动误认为修改效果。
@@ -75,7 +75,7 @@ python3 tools/evaluation/run.py \
 
 ## 大型仓库的成熟功能重建
 
-[BySpace 计划任务场景](cases/byspace-schedules/task.txt)从固定提交删除调度引擎、CLI/RPC 和前端实现，保留协议、调用方、公开文档与回归测试。原版留在被测项目外。删减副本创建只有一个基线提交的独立分支，并整体移除工作流历史目录。
+[BySpace 计划任务场景](cases/byspace-schedules/task.txt)从固定提交删除调度引擎、CLI/RPC 和前端实现，保留协议、调用方、公开文档与回归测试。原版留在被测项目外。删减副本创建只有一个基线提交的独立分支，并整体移除 v1 `bywork/`。
 
 ```bash
 python3 tools/evaluation/freeze_repository.py \
@@ -118,9 +118,9 @@ python3 tools/evaluation/cases/byspace-schedules/acceptance.py \
 
 压缩事件必须对应持久会话里的原生摘要，失败或未完成尝试保留。没有触发压缩时计数为零，接续质量保持无法判定。运行时长、累计 token 和压缩次数都不能单独证明实现质量。
 
-补充探针在模型结束后同时对原版与重建版运行，单独保存为 review 证据，不覆盖首次验收。动作顺序和文件访问回到完整工具记录判断，压缩摘要附带的文件清单可能漏掉 bash 内的读写。
+首轮完整样例见[大型重建评审](../../bywork/work/large-repo-compaction/review.md)：原版标定、自然压缩、首次验收、补充公开 API/CLI 与浏览器探针、25 项来源对账都已留存。补充探针在模型结束后同时对原版与重建版运行，单独保存为 review 证据，不覆盖首次验收。动作顺序和文件访问回到完整工具记录判断，压缩摘要附带的文件清单可能漏掉 bash 内的读写。
 
-比较技能版本时须使用同一冻结任务作为基线，不能把不同输入的运行数值直接拼成对照。
+当前任务明确列出精确兼容接口，且验收已经包含首轮补测。它与首轮输入不同；比较技能版本时须同时使用当前冻结任务，不能直接将首轮数值当成同条件基线。当前持续优化的交付判据及每轮依据见[交付验证 work](../../bywork/work/v2-delivery/index.md)。
 
 独立探针的每条精确期望都要能在被测项目可见要求中找到依据。原版行为只能证明兼容差异；缺少公开依据时补任务契约并冻结新输入，先前结果单列输入缺口。调度任务明确区分普通延迟 tick 与重启恢复的跳槽规则，CLI 明确位置提示词形状。
 
@@ -132,7 +132,9 @@ python3 tools/evaluation/cases/byspace-schedules/acceptance.py \
 
 `--no-skill` 运行器不安装技能，并在验收前核对项目内没有意外的 `.agents/skills/bw`（对照被污染即判失败）；报告记录 `arm` 字段。工作流结论仍按 B 臂 trace 和最终 work 的结果判据审查，与业务通过率分开报告。
 
-对照臂用 `run_repository.py --no-skill` 运行（任务文本去掉工作流措辞，其余与 B 臂逐字节一致），B 臂用 `--source <技能快照>` 运行，两臂交替顺序各跑三次。
+```bash
+bash tools/evaluation/ab_driver.sh   # 交替跑 ab-nobi-01..03 与 ab-bi-01..03
+```
 
 ## 维护用例和运行器
 
@@ -153,4 +155,6 @@ python3 tools/evaluation/cases/byspace-schedules/acceptance.py \
 python3 -m unittest discover -s tools/evaluation -p test_runner.py -v
 ```
 
-离线检查使用 `tools/fixtures/ledger-known-good.py`（正确产物）和 `tools/fixtures/ledger-bad-format.py`（真实格式错误产物）作为回归夹具。
+离线检查使用首次正确产物 `bywork/work/v2-readiness/evaluation/ledger-result.py` 和真实格式错误产物 `bywork/work/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py`。这两个历史文件也是回归夹具，整理记录时保留或同步迁移其测试引用。
+
+长期判定原则见[评测依据](../../bywork/memory/evaluation.md)。

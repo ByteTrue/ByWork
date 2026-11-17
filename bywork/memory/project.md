@@ -18,13 +18,13 @@ ByWork 是一个单技能仓库，分发 `skills/bw/` 下名为 `bw` 的 Agent S
 - 行为证明必须走到本次变化真正生效的入口。没有走到真实路径的检查标记为 `无法判定`。
 - 范围覆盖由事实源机械生成，不能用一张全量清单替代真实行为证明。
 - 技能包只分发 `skills/bw/`，技能内部路径必须自足。
-- `skills/bw/NOTICE.md` 随包携带根 `LICENSE` 和上游归属。`references/grilling.md` 使用上游材料，`domain-modeling.md` 保留其阅读侧材料。
+- `skills/bw/NOTICE.md` 随包携带根 `LICENSE` 和按文件标注的上游归属（CodeStable 三份原则文件的改编句、Matt 的 grilling/domain-modeling）。
 - 仓库使用标准库 Python、Markdown 和 shell。技能本体以中文为主。
 - 工作流文档只陈述当前成立的契约。演变原因、证据和取舍放在历史记录中。
 - 否定式规则只在它阻止模型的强默认行为时保留；其他情况直接陈述正确动作。
-- 提示词极简优雅：只引导模型按流程完成 1234，工具选择和操作顺序放权给模型。规则写成原则和底线，每条底线对应它挡住过的真实事故；不写「先 X 再 Y」式操作规程。
-- 每行规则要挣得它的注意力成本：只在它改变模型默认行为、或对应一次真实失败时才保留。模型本来就会做对的事不写——包括肯定式表述和重复出现在多份文件的同一契约。
-- 当前 `bywork/` 只使用 `work/`、`memory/` 和按需的 `vision/`。
+- 提示词极简优雅：只引导模型按流程完成 1234，工具选择和操作顺序放权给模型。规则写成原则和底线，每条底线对应它挡住过的真实事故；不写「先 X 再 Y」式操作规程。评测依据见 `memory/evaluation.md`。
+- 每行规则要挣得它的注意力成本：只在它改变模型默认行为、或对应一次真实失败时才保留。模型本来就会做对的事不写——包括肯定式表述（如「bug 先沿日志定位根因」）和重复出现在多份文件的同一契约。
+- 当前 `bywork/` 只使用 `work/`、`memory/` 和按需的 `vision/`。v1 历史产物不在本仓库，需要追溯时去 ByIssue 研发仓库。
 
 ## 检查与发布
 
@@ -34,7 +34,7 @@ ByWork 是一个单技能仓库，分发 `skills/bw/` 下名为 `bw` 的 Agent S
 |---|---|
 | 版本号与发布记录一致 | `tools/check-skill-repository.py` |
 | 技能包入口、许可证、路径可达且没有本仓专属路径 | `tools/check-skill-repository.py` |
-| 当前工作区与归档隔离 | `tools/check-skill-repository.py` |
+| 工作区只含 work/memory/vision | `tools/check-skill-repository.py` |
 | work 模板保留唯一检查点字段 | `tools/check-skill-repository.py` |
 | checker 的每项检查可以变红 | `tools/check-skill-repository-selftest.py` |
 | 初始化脚本在用户项目创建并保留 `work/`、`memory/` | `tools/check-skill-scripts.py` |
@@ -55,7 +55,19 @@ ByWork 保存项目中的当前工作和长期判断，不替宿主记录会话�
 
 接入只运行初始化脚本，不要求用户为 bw 修改 `AGENTS.md`。即使用户项目的 `AGENTS.md` 没有提到 bw，手动调用技能也必须完整生效；全部工作流规则都在技能包内。
 
+## 被否方案
+
+原始设计依据见 `bywork/work/v2-delivery/research-direction.md` 与 `research-evidence-matrix.md`。以下方案已经否决，重提时先读理由：
+
+- 压缩后第一项工具调用必须是 `read` 的硬门：七轮提示堆叠（固定口令、入口硬门、持久化 cue）仍被模型忽略，且未拦截过真实事故。恢复门改为结果判据：动作与检查点一致、状态诚实、缺口不丢。
+- 按已验证行为单元自动 commit：候选三十一实测模型全程 0 提交，促使加规则的手工重建基线现象也未复现，业务仍全绿，未证明质量收益。本地 commit 不禁止也不要求；push 及以后必须授权。
+- write-notes-like-deepseek 的四级生命周期目录、六分类和归档封存：只借「备选方案、最强否决理由、代价与风险」的内容模型，不引入重生命周期。
+- 手工写入宿主全局技能目录作为部署/核对目标：宿主索引会清除不受它管理的副本。验证用项目级安装；用户通过宿主安装器自行安装的全局 bw 是正常用法，不在此列。
+- 外部公开评测集作为主验收：它测模型能力，测不到检查点、诚实 `proof_gap` 和跨压缩接续等工作流纪律；只作「技能不损害原始编码能力」的旁证。
+- 用新增否定式提示词防止「新任务挂进已完成 work」：归属规则已存在仍被相邻文件引力绕过，再加一条禁令只付注意力税。改为把正面归属规则放进记录决策点（memory-direction）并用 check_work.py 的 complete-work 引用检查咬合；事故记录见 `bywork/work/rename-bywork/index.md`。
+
 ## 依据与重访
 
+- 用户决定：v2 重写、真实任务评测与干净发布的原始要求和证据保存在 `bywork/work/v2-readiness/index.md` 与 `bywork/work/v2-delivery/index.md`。
 - 可重跑证明：上表的维护命令验证结构和安装副本，具体行为效果以实际任务记录为准。
 - 当分发形态、工作区模型或用户的发布授权改变时，重新核对本记录。
