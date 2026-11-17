@@ -32,6 +32,8 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 
 真实会话里观察到的机械门冲突先查版本滞后，再判方法论缺口：全局技能副本可能落后于源仓库（同一版本号内文件也可能不一致），模型撞上的可能是已修复的旧 bug。byspace 多语言砍减会话用 stale 全局 checker 再次撞上表头字面匹配，自行以「formatter 排除 bywork/」解决——与源仓库的「checker 按单元格解析」是同一冲突的互补解法，对机器写的检查点文件前者更合理。这类冲突不指向工作流规则缺陷。
 
+分档判据是任务结构，不是工作量感受：「能否一次做完」「懒/省事」不是小改的判据，多个行为路径或需要完整性核对的改变（迁移、批量改道、移植）即使单会话能完成也建 work。AGCopilot 旧工作流迁移会话里，模型先正确判定「~300 文件、多决策 → 建 work」，随后被 ponytail 的「keep it lazy」与「能一次做完的机械迁移」说服自己降级成 memory-direction 小改，漏建 work 与 scope——迁移本身做得不错，缺的是索引。这与 mise 会话（真小改、零产物正确）互为镜像：分档机制本身工作，但「lazy」框架会压过结构判据。修法是在 change.md 小改条目旁正面切开「能一次做完」与「小改」，不新增禁令、不碰 ponytail。
+
 ## 依据
 
 - 类型：用户决定 / 可重跑证明。
@@ -45,6 +47,7 @@ TMPDIR 与目录提示只约定临时路径，不能保证文件系统隔离。�
 - 实战观察：byspace v1→v2 迁移会话（opencode `ses_e1c2e6a8fffeCOixE3sgtYCxvy`，单轮自主执行、约 10 次压缩）基线先行、scope 机械生成并交叉核对、蒸馏前重读原件、不预写通过，结果判据恢复门全部成立；同时暴露 `check_work.py` 表头字面匹配拒绝 formatter padded 表头，模型约 6 次调用手工绕过。修复与回归夹具见 CHANGELOG 2.1.1。
 - 实战观察：byspace「是否还需要 mise 管理项目」会话（opencode `ses_e1b3c9c6effeCPJ1L5JD6591d2`）零 byissue 产物：澄清先查全事实再带推荐提问，确认后按小改直接做，红基线加逐分支验证到完整 `make build-android` 通过；收尾推理明确判断构建前置已落 `docs/development.md`、进程环境残留属暂态不入 Memory。与迁移会话互为分档两端正样本：大任务落大量产物、小任务零产物，两头都正常才证明分档机制工作。
 - 实战观察：byspace「精简多语言至中英文」会话（opencode `ses_e1aa4d8d3ffeM46ik9HM81q2Dg`）全纪律命中：clarify 核实用户前提（9 语言集合是本仓移植期自扩非上游）、带推荐三问、建 work 记录用户授权的测试改动、新回归先红后绿、压缩摘要简写与旧测试冲突时信测试（保留 zh-TW→en）、Memory 只记决定、收尾诚实标注 bundle 为源码估算且未跑浏览器。唯一冲突是 stale 全局 checker 的表头字面匹配（2.1.1 已修），agent 以 `.oxfmtrc.json` 排除 `bywork/**` 自行解决。与迁移、mise 会话凑齐分档三端正样本。
+- 实战观察：AGCopilot「先更新代码」会话（opencode `ses_e18890365ffezqKTaZTBBE6CCI`，工作目录 `/Users/zijie/workspace/work/AGCopilot`）四段中前三段无 work 均正确路由（git pull+装依赖非 change、目录审计属 understand、删 4 项属小改）；第四段旧 BI 产物归档迁移（300 文件、spec+8 决策+32 notes、3 子代理、8 处引用改道）推理 seq701 先判「建 work」、seq879 改口「memory-direction 小改、keep it lazy」跳过，落盘 `bywork/work/` 为空。这是分档被 lazy 框架错误降级的真实反例，促成 change.md 小改条目补「能否一次做完不是判据」。
 
 ## 重访条件
 
