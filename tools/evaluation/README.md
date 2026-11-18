@@ -155,6 +155,10 @@ bash tools/evaluation/ab_driver.sh   # 交替跑 ab-nobi-01..03 与 ab-bi-01..03
 python3 -m unittest discover -s tools/evaluation -p test_runner.py -v
 ```
 
-离线检查使用首次正确产物 `bywork/work/v2-readiness/evaluation/ledger-result.py` 和真实格式错误产物 `bywork/work/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py`。这两个历史文件也是回归夹具，整理记录时保留或同步迁移其测试引用。
+离线检查使用 `tools/fixtures/ledger-known-good.py`（首次正确产物的副本）和 `tools/fixtures/ledger-bad-format.py`（真实格式错误产物的副本）。原始产物仍留在 `bywork/work/v2-readiness/evaluation/ledger-result.py` 与 `bywork/work/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py` 作历史证据；夹具是独立副本，整理历史记录不影响离线检查。
 
 长期判定原则见[评测依据](../../bywork/memory/evaluation.md)。
+
+## 复盘一次真实使用会话
+
+评测之外，用户日常用 `bw` 的真实会话同样是证据来源。复盘把一次真实会话变成技能修改候选：用 `tools/export-opencode-session.py --session <标题或 id>` 导出含推理与工具调用的原文（`--list` 按标题找），以原文为准核对当时的分档、验证与收尾，再按[真实会话复盘](../session-retro.md)的筛选标准决定改哪里。长期判定结论沉淀到[评测依据](../../bywork/memory/evaluation.md)。
