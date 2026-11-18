@@ -63,7 +63,7 @@ def parse_frontmatter(lines: list[str]) -> tuple[dict[str, str], list[str]]:
     return fields, problems
 
 
-def check(index: Path) -> list[str]:
+def check(index: Path, *, as_complete: bool = False) -> list[str]:
     text = index.read_text(encoding="utf-8")
     lines = text.splitlines()
     fields, problems = parse_frontmatter(lines)
@@ -71,10 +71,13 @@ def check(index: Path) -> list[str]:
         if name not in fields:
             problems.append(f"frontmatter is missing `{name}`")
     status = fields.get("status", "")
-    if "status" in fields and status not in STATUSES:
+    # `as_complete` judges the completion gates; the current status value is irrelevant
+    # to closing (the whole point is that the model never hand-writes it, even to fix
+    # an illegal variant). Only the standalone check enforces the value domain.
+    if "status" in fields and status not in STATUSES and not as_complete:
         problems.append(f"status: {status!r} is not one of {'/'.join(STATUSES)}")
     gap = fields.get("proof_gap")
-    if status == "complete":
+    if status == "complete" or as_complete:
         if gap is None:
             pass  # already reported as missing
         elif gap != "":
@@ -89,7 +92,7 @@ def check(index: Path) -> list[str]:
         for line in lines
     ):
         problems.append("no behavior proof table (expected a `| 行为路径 |` header row)")
-    if status == "complete":
+    if status == "complete" or as_complete:
         # A complete work is sealed. Anything added afterwards must be reachable
         # from index.md (a markdown link or a `backtick` mention, a directory
         # mention covers its contents); an unlinked file is usually a new task
@@ -112,12 +115,50 @@ def referenced(text: str) -> list[str]:
     return [p for p in paths if not p.startswith(("http://", "https://", "/")) and ".." not in p.split("/")]
 
 
+def close(index: Path) -> list[str]:
+    """Validate the work as if complete, then write `complete` itself.
+
+    The model never hand-writes the status value: it calls `--close <slug>` and the
+    gate either writes `complete` or refuses and leaves the file untouched. This
+    removes the Greeting failure mode (a hand-written illegal value plus a non-empty
+    gap that the checker would have refused, but was never called).
+    """
+    text = index.read_text(encoding="utf-8")
+    lines = text.splitlines()
+    # Judge the completion gates against the prospective complete state, regardless
+    # of the current status value (which may be in_progress or an illegal variant).
+    problems = check(index, as_complete=True)
+    if problems:
+        return problems
+    # Only the status line changes; everything else is preserved byte for byte.
+    new_lines = [
+        "status: complete" if line.strip().startswith("status:") else line
+        for line in lines
+    ]
+    index.write_text("\n".join(new_lines) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
+    return []
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate bywork/work/*/index.md checkpoints.")
     parser.add_argument("--project", default=".", help="Project root containing bywork/.")
+    parser.add_argument("--close", metavar="SLUG", help="Validate one work and write `complete` only if every gate passes.")
     args = parser.parse_args()
 
     work = Path(args.project).resolve() / "bywork" / "work"
+    if args.close:
+        index = work / args.close / "index.md"
+        if not index.is_file():
+            print(f"FAIL {args.close}: no index.md under {index.parent}")
+            return 1
+        problems = close(index)
+        if problems:
+            for problem in problems:
+                print(f"FAIL {args.close}: {problem}")
+            return 1
+        print(f"closed {args.close}: status written to complete")
+        return 0
+
     if not work.is_dir():
         print(f"nothing to check: {work} does not exist")
         return 0

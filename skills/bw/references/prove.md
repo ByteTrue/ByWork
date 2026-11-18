@@ -67,4 +67,4 @@
 
 ## 完成与接续
 
-行为单元切换与接续遵循 `SKILL.md`。完成前逐项核对行为门、范围门和外部验收结果，每个未通过项点名写进 `proof_gap`；全部通过且缺口为空才写 `complete`，否则保留 `in_progress`/`blocked`。证据推翻完成结论时，直接把原 work 改回未完成状态并更新证明；新目标或新增范围建立新的 work。
+行为单元切换与接续遵循 `SKILL.md`。完成前逐项核对行为门、范围门和外部验收结果，每个未通过项点名写进 `proof_gap`。全部通过且缺口为空时，运行 `scripts/check_work.py --close {slug}` 收口：脚本核对完成门，通过才把 `status` 写成 `complete`，不通过就拒绝并保持文件原状。`complete` 由这个命令写入，不手写；任何失败都保留 `in_progress`/`blocked`。证据推翻完成结论时，直接把原 work 改回未完成状态并更新证明；新目标或新增范围建立新的 work。

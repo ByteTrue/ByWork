@@ -34,5 +34,5 @@ proof_gap: ""
 - 行为门：需求逐项有证明行，每行有实际断言，剩余缺口已写入 `proof_gap`：
 - 范围门：无 `scope.md` / 已逐项对账：
 - 契约门：共享路径改动有基线和同入口比较，可选策略逐分支验证，持久化/生命周期经过新进程或重启入口，既有测试保持原文件原断言：
-- 完成门：外部验收无失败，`proof_gap` 恰为空才写 `complete`；否则保留 `in_progress`/`blocked` 并点名缺口。运行技能包内的 work 校验脚本，它机械核对状态值域与完成一致性：
+- 完成门：外部验收无失败，`proof_gap` 恰为空，运行 `scripts/check_work.py --close {slug}` 收口（由脚本写入 `complete`）；否则保留 `in_progress`/`blocked` 并点名缺口：
 - 需要用户看的推断或无法判定：

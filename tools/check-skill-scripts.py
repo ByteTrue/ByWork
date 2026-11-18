@@ -46,6 +46,20 @@ def run_check(project: Path) -> tuple[int, str]:
     return proc.returncode, proc.stdout + proc.stderr
 
 
+def run_close(project: Path, slug: str) -> tuple[int, str]:
+    proc = subprocess.run(
+        [sys.executable, str(CHECKER), "--project", str(project), "--close", slug],
+        capture_output=True,
+        text=True,
+    )
+    return proc.returncode, proc.stdout + proc.stderr
+
+
+# An in_progress work whose proof rows all pass and whose gap is empty: the only
+# thing between it and `complete` is the status write itself.
+READY = VALID.replace("status: complete", "status: in_progress")
+
+
 def write_work(root: Path, slug: str, text: str) -> Path:
     index = root / "bywork" / "work" / slug / "index.md"
     index.parent.mkdir(parents=True, exist_ok=True)
@@ -179,6 +193,47 @@ def main() -> int:
         code, output = run_check(checked)
         case("check reports every entry instead of stopping at the first",
              code != 0 and "ok   valid" in output and "FAIL broken" in output and "1/2" in output, output)
+
+        # --close writes `complete` itself, so the model never hand-writes the
+        # status value (the Greeting failure: a hand-written `done` plus a non-empty
+        # gap that check_work would have refused, but was never called).
+        write_work(checked, "valid", READY)
+        code, output = run_close(checked, "valid")
+        index = checked / "bywork/work/valid/index.md"
+        case("close writes complete when every gate passes",
+             code == 0 and "status: complete" in index.read_text(encoding="utf-8"), output)
+
+        # A non-empty gap must block the write and leave the file untouched.
+        write_work(checked, "valid", READY.replace('proof_gap: ""', 'proof_gap: "生产 Pi 未复验"'))
+        before = index.read_text(encoding="utf-8")
+        code, output = run_close(checked, "valid")
+        case("close refuses a non-empty proof_gap and does not write",
+             code != 0 and index.read_text(encoding="utf-8") == before and "proof_gap" in output, output)
+
+        # An unresolved proof row must block the write too.
+        write_work(checked, "valid", READY.replace("| 通过 |", "| 待跑 |"))
+        before = index.read_text(encoding="utf-8")
+        code, output = run_close(checked, "valid")
+        case("close refuses an unresolved proof row and does not write",
+             code != 0 and index.read_text(encoding="utf-8") == before and "待跑" in output, output)
+
+        # Closing an unknown slug is an error, not a silent no-op.
+        code, output = run_close(checked, "does-not-exist")
+        case("close reports an unknown slug", code != 0 and "does-not-exist" in output, output)
+
+        # --close only touches the status line; the rest of the file is preserved.
+        write_work(checked, "valid", READY)
+        run_close(checked, "valid")
+        closed = index.read_text(encoding="utf-8")
+        case("close changes only the status line",
+             closed == READY.replace("status: in_progress", "status: complete"), closed)
+
+        # An illegal status value on disk does not block closing: --close exists so
+        # the model never hand-writes status, even to repair a variant like `done`.
+        write_work(checked, "valid", READY.replace("status: in_progress", "status: done"))
+        code, output = run_close(checked, "valid")
+        case("close repairs an illegal status value when the gates pass",
+             code == 0 and "status: complete" in index.read_text(encoding="utf-8"), output)
 
     print(f"{'all' if not failures else failures} packaged script case{'s' if cases != 1 else ''} "
           f"{'pass' if not failures else 'failed'}")

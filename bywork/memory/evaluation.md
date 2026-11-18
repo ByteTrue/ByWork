@@ -54,6 +54,12 @@ complete work 的 `next_action` 写「无」是约定不是机械门，偏离无
 
 分档失败有第三种机制：分析转修改时主行动不重新分类，沿用压缩摘要里的陈旧行动标签惯性滑入实现。前两种是「真小改零产物」（正确）和「lazy 框架主动压过判据」（AGCopilot 迁移，agent 明说 keep it lazy）；第三种 agent 根本没走到「判断是不是小改」，它还在用上一阶段的行动惯性继续干活。判别要回原始会话 grep 授权修改到首次 edit 之间有无路由词（主行动/改变/change.md/建work/小改），全 0 且无「这是小改」判定即属此类。规则缺口不在判据而在触发点：SKILL.md 原句「调用 bw 先判断」被框成一次性入口闸门，行动入口读一次后被压缩掉，决策点（每条新用户消息到达）没有重新触发；understand-review 的「用户要求改变后进入 change」转换规则存在但同样离决策点远。修法是把触发点就地磨锐到「每条用户消息都先判断此刻的行动；摘要或上文里的行动标签是历史，不是当前状态」，通用覆盖所有行动转换与所有陈旧载体（压缩摘要+纯上下文惯性），不枚举具体转换、不重复 change.md 的 work-vs-small 权威。诚实边界：散文不保证挡住惯性，但这次要求的是模型本就会做的动作（新消息来了重新看用户要什么），比候选 18–21 那种反默认动作更可能生效；若复发再考虑机械门。
 
+非法状态值（done）的偏离要分「忘了跑校验」和「值域知识在收尾失效」两层，后者更深：值域规则（status 只能 in_progress/blocked/complete）在技能入口加载过、check_work.py 也硬拒非法值，但模型收尾时可能主动读到自己写的 done 仍把它当合法「完成」沿用，只清 next_action 不改状态、也不因 proof_gap 非空回 in_progress——这不是忘了跑校验，是值域约束在收尾决策点没被当成约束。判别要回原始会话看 done 写入后有无合法值回改、收尾推理是否读到 done 并认可它。check_work 实跑能抓（机械门有效），但模型不调用就没机会拦；「收尾必须跑 check_work」是散文步骤，依赖自觉。无用户提醒的后续段可能补上其他纪律（真跑 dev E2E、开 PR、回写证据）却仍不修状态——「能自觉补上」不能假设，要逐次核实。单次偏离按准入线不立规；若 done/跳过 check_work 在新版会话反复出现，升级方向是让收尾校验不可跳过（宿主侧钩子或更显眼硬步骤），不是再加一句「记得跑 check_work」的散文。
+
+提示词新增规则要自查重复与具体锚，两者都有实证危害。重复：加 `--close` 时把同一机制写进 SKILL 核心流程/底线、change 出口、work 模板、prove 完成门五处，结果 prove.md 漏改、仍写「才写 complete」，与 SKILL「不手写」直接矛盾——重复不是冗余美观问题，是改一处漏一处的漂移源。修法是按 project.md「一条规则一个权威归属」收敛：完成门机制只归 prove.md「完成与接续」，其余留指针或底线里不可协商的一句；收尾总结结构归 SKILL 汇报段、写法归 writing.md，不互相复述。具体锚：「几小时的工作该写清就写清」用具体时长举例，模型会把它当范畴边界，工作十几小时就可能误判超出；规则应陈述原则本身（「按内容需要写清，不硬限字数」），不举时长/数量等可被误读为阈值的例子。自查可 grep 复现：同一契约关键词（如 --close）在多文件出现即疑重复，具体数字/时长词即疑锚。否定式按既有准入线（挡住强默认行为才留、配正面动作），纯否定 framing（「不是写给X的人」）改正面（「写给Y的人」）。
+
+收尾总结可作用户侧的漂移探针：它是模型每次回复必然产出的自我陈述（做了什么/下一步/需要你），把它与 work 检查点对照即可发现漂移——current_unit 与「做了什么」不符是跑偏，proof_gap 非空而总结说「全部完成」是假完成，next_action 与「下一步」不符是偏离。这比依赖模型自觉跑 check_work 更稳，因为总结是必然产出物而 check_work 是可选动作（Greeting 正是没跑）。边界：这是给人用的观测手段，不是机械门，不阻止漂移只让漂移更易被发现；不写成「模型必须自查总结与检查点一致」的新散文规则（那又依赖自觉，会失效）。它与既有纪律同源（SKILL 接续核对、prove 证据推翻完成结论即改回），只是把核对触发点扩展到每次汇报、且用用户侧视角。升级触发器：若「总结与检查点不一致」成为反复出现的漂移信号，再考虑让 check_work 或宿主侧做这个对照（机械门），现在不加规则。memory 写入的汇报归属在 memory-direction.md（汇报写了/更新了哪条长期判断、依据、复核时机），SKILL 汇报段不复述；「做了什么」自然包含沉淀内容，无需单独命令。
+
 ## 依据
 
 - 类型：用户决定 / 可重跑证明。
@@ -73,6 +79,21 @@ complete work 的 `next_action` 写「无」是约定不是机械门，偏离无
 - 实战观察：byspace「OpenTunnel vs relay tunnel 对比」会话（opencode `ses_e188d08ecffeHbxnN1Anr9umIK`，821 messages，跨 Qwen3.8-Flash-Next→gpt-6-luna→gpt-6.1-sol 多模型、多次压缩）是评测之外第一个端到端大型任务：对比分析（understand，不建 work）→ 用户授权 A–E → change 建 work（证明表 7 行起步、17 行收尾）→ C1/C2/B1/B2/A1/A2/D1/E1 逐行先红后绿、既有测试只读（981 行新测试全放新文件）、共享根因修一次（自己区域的 `target.go:313` 无锁读修，`server.go:2902/3799` Pi-agent race 用 clean baseline 复现确证既有不修）→ complete + check_work → 同步上游调和（采用上游更优的 proved 重置信号、保留自己的 jitter）→ 从本会话 reset 事故恢复（先核对再动手、纠正提示词错误、103 passed 复验）→ PR #49 + 双子代理审查挖出 9 个真 bug（含两个阻断级，每项先写可执行复现再修）→ CI Linux 失败定位为自己新测试时钟预算（断言未动）→ 合并 `c81df2040` → 清理（删 pin 前核对 merged HEAD 含全部设计件、不是自己的两个分支即使 0 ahead 也不删、共享临时目录只删自己的 26 个文件）。分档、证明表、先红后绿、既有测试只读、诚实 proof_gap、完成门、异步证据回写、git 边界全部跑通，无需加新规则；两个二阶纪律正面样本记入上方结论。
 - 用户决定（2026-11-17）：去掉 byspace `AGENTS.md:119` 的「Spawn subagents only when asked」总限制，改为「探索/查事实/聚焦审查可派子代理，大批量删除/重构仍留主会话（会漂移）」。起因是本会话复盘时用户误以为 OpenTunnel 会话的双子代理审查是 agent 自发，取证确认实为用户 seq5660 明确要求（该 seq 前 subagent 调用数为 0）；bw 对子代理无偏好，结论记入上方「子代理的使用由宿主/项目规则决定」。
 - 实战观察：AGCopilot「飞书 Grimm 最新四条私聊」会话（opencode `ses_e1328402fffesfa6j31OBnmSsL`，433 messages，cwd `/Users/zijie/workspace/AGCopilot`，技能从 `~/.config/opencode/skills/bw/` 加载）。第一阶段分析四条私聊正确路由理解与审查（只输出聊天不建 work）；seq1499 用户「改一下内置的模型配置参数吧」到 seq1687 首次 edit 业务文件（`packages/shared/pi-agent/types.ts`/`index.ts`）之间 188 seq 推理零路由词、无「小改」判定，seq1943「全部修吧，5 不用管」后多行为路径（图片预算/模型配置/错误分类/旧会话 sanitize）仍无 work。压缩摘要陈旧锚：seq1499 前摘要仍写「主行动=理解与审查」，后续 Open objectives 漂成「finish the built-in model config change」但从未重新分类。修复本体真实（网关把图片 base64 当文本计费 1.07M PNG→774K tokens、Pi `compaction.js:181` ESTIMATED_IMAGE_CHARS=4800 使大图留 kept tail、错误文案 `[undefined]` 来自 `serialize.ts:86`），测试真跑但非 work 证明表。用户 seq4709「我貌似没看到任何 bw 产物」，agent 诚实承认「确实没遵守…任务从分析转成修改时没有切换流程」，提议补建 agtp-context-overflow-fix 的 work index+2 memory+check_work，用户未回应会话结束，补救未执行；盘上 AGCopilot 至今无该 work、18 业务文件未提交。促成 SKILL.md 行动路由触发点改为「每条用户消息」（1.0.1）。
+- 实战观察：byspace worktree kind-moon「Greeting」会话（opencode `ses_e123d3e56ffeA1tyjUGocrCtpP`，253→405+ messages，**1.0.1 新版**，新触发句在上下文）。work `provider-model-refresh-stale`（Provider 刷新后会话选择器仍 17 旧目录，根因三段：daemon 无 cwd 刷新只重建 host catalog、web host push 只写 home query、cwd fallback 不启动项目后台发现）。seq2763 把 status 从 in_progress 改成 **done** 且 proof_gap 非空（「生产安装的真实 Pi 未复验」）；值域规则在加载的技能里（导出行 72 逐字）。全程 0 次 check_work 调用。用户 seq2804 只问「dev 模式验证做了吗？没问题就开 PR」，后续无提醒自主补了 dev E2E（6778+8082 真跑 17→21→reload 保留）、清临时文件停 dev server、PR #50（a2ead08）、回写 dev 证据+PR 链接+next_action 清空——但 **done 始终未改**（done 写入点后全文 0 个合法状态值），收尾推理 seq3734 主动读到「status: done」并认可（「ByWork says when complete next_action empty」），只清 next_action 不改 done、不因 gap 非空回 in_progress。本会话复盘时实跑 check_work 报 `FAIL … status: 'done' is not one of in_progress/blocked/complete`（机械门有效但未被运行）；隔壁会话后续已自行把盘上修回 in_progress + 非空 gap（CI 外部验收 + 生产 Pi 未复验），属正确未完成态。属值域知识收尾失效的执行偏离，非规则缺口；「自觉补上」未发生。促成 1.0.2 把 complete 写入收归 check_work --close。
+
+## 完成写入的机械咬合
+
+完成门「全过 + gap 空才 complete」长期靠模型自觉手写 status，Greeting 证明这条散文挡不住：值域规则在上下文里、check_work 能拒非法值，但模型既写错值（done）又没调用校验器。校验器存在 ≠ 校验器被触发。修法不是再加一句「收尾必须跑 check_work」（规则已在 SKILL.md，仍被绕过），而是把「写 complete」这个动作本身收归校验器：`check_work.py --close {slug}` 先核对完成门，通过才由脚本写入 complete，不通过拒绝并保持文件原状。模型要做的从「写对状态值」变成「调用一个命令」，后者是更可靠的默认行为；盘上非法值在完成门满足时被该命令自然覆盖，不需要先手写一个合法值（那会重新引入手写出错的机会）。
+
+调研对照（2026-11-18）：v1 把 `check_open_issues.py` 绑在提交链第 4 步（校验是动作的固定一环，不是事后想起）；openspec 的 archive 是 CLI 命令、内置 status 检查；superpowers `verification-before-completion` 的 Iron Law 要求每条完成声明都有「这条消息里刚跑出的证据」，连「Done!」语气词都算违规；pstack 根本没有「关闭」动作，完成=真实产物验证 + 独立验证者判 PASS（作者不能自判）；spec-kit 逐任务勾 `[X]` + 尾部完成 checklist。共同点：完成不靠「模型觉得自己做完了」，而靠一个外在于模型自觉的机械前置。bw 的「做完自动收口」意图本身可行（pstack/superpowers 证明无显式关闭可行），缺的是完成写入的机械前置；--close 补的就是这一环，而非回到 v1 的用户授权显式关闭。
+
+适用边界：--close 只保证「不会把没做完的 work 标 complete」与「不手写非法值」，不保证证明表登记全（plan 完备性仍是另一层）；它取代手写 complete，不取代收尾前逐项核对证明表/scope/外部验收。
+
+## 收尾总结写给要据此行动的人
+
+用户决定（2026-11-18）：每次回复末尾给一个固定收尾总结，用平实语言讲清「做了什么 / 下一步 / 需要你」，让用户不读前面的技术细节也能掌握全局。起因是用户真实使用的痛点——回来面对一堆技术细节看不懂，总得再问「下一步是什么 / 需要我做什么」。本质是 bw 把当前状态存在 work 的 current_unit/next_action 里供 agent 接续，但没稳定浮到给用户的回复里。「需要你」一栏是核心：集中列等用户拍板、授权、支持或缺信息的内容，没有写「无」，让用户一眼知道哪些事该自己管。两条边界：精炼简洁但不硬限字数（几小时的工作一两句话总结不了，标准是读一遍就懂，不是字数）；「老板/助理」只是用户方便理解的比喻，不进提示词，提示词用中性表述。SKILL.md 汇报段与共同规则、writing.md「收尾总结」节承载；与 work 模板的「需要用户看的推断或无法判定」是不同载体（回复 vs 落盘文档），语义一致不矛盾。
+
+后续同日补强：「需要你」每项也带推荐+一句理由（用户诉求，SKILL.md 共同规则「提问带推荐」已覆盖到收尾总结，消除提问轮次带推荐而需要你不带推荐的盲区）。用户更深的痛点是「回复没章法、没重点、看着累」——writing.md「写成人话」14 条早已吸收（含 pstack/Matt 的说人话纪律），但用户感知不明显，属「规则存在≠被触发」的老问题，不是没吸收。拟用固定输出模板治章法：做了什么=一句总领起头+无序列表列全要点（总领说这次整体是什么，列表列全），下一步=有序列表（有先后），需要你=有序列表按重要性+每项带推荐。措辞教训：最初写「一句话核心结论」连用户都误解成「只放一件事」，模型更会误解——凡可能被读成数量限制的措辞（「一句话」「核心一件」）都要换成显式说明结构（「总领起头，列表列全」），不让读者靠解释才懂。模板先示范观察（用户试用几次看累不累），不急着固化进 writing.md，避免拟合没定位清的痛点；若示范有效再写规则，无效再针对具体哪里累加最小规则。
 
 ## 重访条件
 
