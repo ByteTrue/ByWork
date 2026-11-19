@@ -1,8 +1,6 @@
 ---
 name: bw
-description: >
-  ByWork：用 work/{slug}/、memory/{topic}.md 与按需的 vision/ 管理软件演化；按用户当前行动推进澄清、改变、理解与审查、记忆与方向。
-  触发：bw、ByWork、初始化 bw、接入 ByWork；聊聊、先理清、想清楚再做、帮我规划一下、拷问我、多轮问清楚；怎么实现、先设计、实现方案、快速、快改、小改一下、顺手改一下、直接开干、别走流程、做这个、推进、修这个 bug、穿刺、先打通；怎么工作的、这条链路、影响范围、review、评审、看看这 diff/PR；整理 vision、维护 spec、当前真相、记一下坑、写 note、我带你跑一遍、教 AI 做某流程。
+description: 软件开发工作流：做任何事之前，先调用它。
 ---
 
 # ByWork

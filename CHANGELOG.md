@@ -1,3 +1,7 @@
+## 1.0.4
+
+- `description` 从 301 字符的触发词表改为一句话：「软件开发工作流：做任何事之前，先调用它。」只说身份与触发时机，触发词由 `SKILL.md` 四种行动表单一承载，不再两处重复。触发不绑「每条用户消息」——真实长会话里用户可能只发两条消息，中间几十轮是工具驱动的自主续跑，按消息计数会一次都不触发。也不绑「改代码/下结论/收尾」这类具体动作——bw 的第一个动作是判断姿态，那必须发生在探索之前，等到改代码才调用已经晚了。起因：复盘 AGCopilot 与 byspace 两场 1.0.3 会话发现，压缩把 `SKILL.md` 正文折叠成一句摘要后，收尾总结、状态值域与 `--close` 收口 100% 消失（压缩前 4/4 遵守，压缩后 0/3），而同场次宿主 system 层的指令全程未忘。取证查明 skill 的 ID、name 与 `description` 由宿主在每个 model step 重新列出、属指令层不进消息历史，正文才是可压缩的那部分（`opencode.ai/docs/skills`「Loading」）。因此把再入契约放进 `description`：它压缩后仍在，促使模型重新加载技能，正文里的模板与值域随之恢复，无需把契约抄第二份。superpowers 的 `using-superpowers` description 正是这个形状（before ANY response including clarifying questions）。
+
 ## 1.0.3
 
 - 收尾总结改为在 `SKILL.md`「汇报」段直接给出可视模板（「做了什么」一句总领加无序列表、「下一步」有序列表、「需要你」有序列表带推荐与理由），删掉 `references/writing.md` 重复的「收尾总结」小节与 `SKILL.md` 共同规则里的重复短语。起因：1.0.2 把收尾总结拆成 `SKILL.md` 的三行 `- **标签**：…` 单行列表和 `writing.md` 的散文描述两半，实战中模型直接照抄 `SKILL.md` 的三行单行形状而忽略了 `writing.md` 的列表结构。
