@@ -1,3 +1,7 @@
+## 1.0.3
+
+- 收尾总结改为在 `SKILL.md`「汇报」段直接给出可视模板（「做了什么」一句总领加无序列表、「下一步」有序列表、「需要你」有序列表带推荐与理由），删掉 `references/writing.md` 重复的「收尾总结」小节与 `SKILL.md` 共同规则里的重复短语。起因：1.0.2 把收尾总结拆成 `SKILL.md` 的三行 `- **标签**：…` 单行列表和 `writing.md` 的散文描述两半，实战中模型直接照抄 `SKILL.md` 的三行单行形状而忽略了 `writing.md` 的列表结构。
+
 ## 1.0.2
 
 - `complete` 改由 `scripts/check_work.py --close {slug}` 写入，不再手写。脚本先核对完成门（证明行全过、`proof_gap` 恰为空、complete-work 封存），通过才把 `status` 写成 `complete`，不通过拒绝并保持文件原状；盘上的非法状态值（如 `done`）在完成门满足时也被该命令自然覆盖。起因：byspace「Greeting」会话手写 `status: done` 且带非空缺口，`check_work.py` 能拒但全程未被调用——校验器存在却没被触发。把「写 complete」从模型的自觉动作变成校验器的输出，消除手写非法值的机会（调研对照：v1 把 `check_open_issues.py` 绑在提交链、openspec 的 archive 是命令、superpowers 要求完成声明前有刚跑出的证据）。完成门机制的权威归属在 `references/prove.md`「完成与接续」，SKILL.md 核心流程与底线、change.md 出口、templates/work.md 完成门只留指针或不可协商的一句，不复述机制。
