@@ -45,7 +45,7 @@ ByWork 是一个单技能仓库，分发 `skills/bw/` 下名为 `bw` 的 Agent S
 
 发布顺序是：修改 `skills/bw/`，运行 `bash tools/release-check.sh --no-deploy`，更新 `VERSION` 和 `CHANGELOG.md`，用 `npx skills add` 同步用户项目的 `.agents/skills/bw/`，再运行 `bash tools/release-check.sh <项目级安装目录>`，最后按用户要求提交或分发。验证用的安装副本放在项目级；手工写入宿主全局目录的副本会被宿主索引清掉，不作为部署或核对目标。用户自己通过宿主安装器装的全局 bw 不受此限。
 
-本仓库用仓库内相对软链接自举：`.agents/skills/bw` 指向 `../../skills/bw`，随仓库提交。clone 后无需安装步骤，宿主经兼容目录直接加载仓库里的最新技能；改技能源码即生效，不存在副本漂移。用户通常还会全局安装 bw；绝大多数宿主项目级优先覆盖全局，一般不用管。个别宿主若让全局旧版覆盖了项目链接，按该宿主的优先级处理，不靠删全局副本解决。
+本仓库用仓库内相对软链接自举：`.agents/skills/bw` 指向 `../../skills/bw`，随仓库提交。clone 后无需安装步骤，宿主经兼容目录直接加载仓库里的最新技能；改技能源码即生效，不存在副本漂移。用户通常还会全局安装 bw；绝大多数宿主项目级优先覆盖全局，一般不用管。个别宿主若让全局旧版覆盖了项目链接，按该宿主的优先级处理，不靠删全局副本解决。用户通过 Magpie 管理的全局技能（`~/.config/magpie/library/skills/bw`，软链至 `~/.config/opencode/skills/bw`）在远端推送后可用 `magpie library skill update bw` 同步到最新提交。
 
 `tools/release-check.sh` 不猜部署目录。没有给出目录或 `BW_DEPLOYED` 时，发布检查会失败；编辑后的本地检查使用 `--no-deploy`。
 
