@@ -17,8 +17,11 @@ step() {
 }
 
 step "checker" python3 tools/check-skill-repository.py
+step "workspace" python3 skills/bw/scripts/bw.py check --project .
 step "checker self-test" python3 tools/check-skill-repository-selftest.py
 step "packaged scripts" python3 tools/check-skill-scripts.py
+step "adversarial regressions" python3 tools/test-bw-adversarial.py
+step "board parsing and rendering" node tools/test-bw-board.cjs
 step "evaluation runner" python3 -m unittest discover -s tools/evaluation -p test_runner.py
 
 target="${1:-${BW_DEPLOYED:-}}"

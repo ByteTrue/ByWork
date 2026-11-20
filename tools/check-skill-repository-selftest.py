@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CHECKER = "tools/check-skill-repository.py"
+PROJECT_DOC = "bywork/implemented/architecture/2026-11-18-project-constraints.md"
 
 
 def edit(rel, old, new):
@@ -76,12 +77,12 @@ CASES = [
     ),
     (
         "template carries a skill-internal path",
-        append("skills/bw/templates/work.md", "[x](../references/clarify.md)"),
+        append("skills/bw/templates/proposed.md", "[x](../references/clarify.md)"),
         "template contains skill-internal path",
     ),
     (
-        "work template loses a checkpoint field",
-        edit("skills/bw/templates/work.md", "status: in_progress", "state: in_progress"),
+        "proposed template loses a checkpoint field",
+        edit("skills/bw/templates/proposed.md", "status: in_progress", "state: in_progress"),
         "frontmatter fields must be",
     ),
     (
@@ -91,7 +92,7 @@ CASES = [
     ),
     (
         "current doc names a deleted tool",
-        append("bywork/memory/project.md", "见 `tools/check-deleted.py`"),
+        append(PROJECT_DOC, "见 `tools/check-deleted.py`"),
         "names missing path: tools/check-deleted.py",
     ),
     (
@@ -101,7 +102,7 @@ CASES = [
     ),
     (
         "inline command names a deleted tool",
-        append("bywork/memory/project.md", "运行 python3 tools/deleted.py"),
+        append(PROJECT_DOC, "运行 python3 tools/deleted.py"),
         "command names missing path: tools/deleted.py",
     ),
     (
@@ -110,21 +111,22 @@ CASES = [
         "command names missing path: tools/deleted.py",
     ),
     (
-        "current work links a missing file",
-        write("bywork/work/example/index.md", "[proof](missing.md)\n"),
+        "current proposal links a missing file",
+        write("bywork/proposed/architecture/2026-11-20-example.md", "[proof](missing.md)\n"),
         "link points at missing path: missing.md",
     ),
     (
         "historical records left in active workspace",
         write("bywork/issues/legacy.md", "# historical issue\n"),
-        "unexpected workspace entry; only work/, memory/, and vision/ belong here",
+        "unexpected workspace entry; only proposed/, implemented/, rejected/, archived/, and vision/ belong here",
     ),
     ("changelog newest section is not VERSION", lambda root: (root / "CHANGELOG.md").write_text("## 0.0.0\n\nold\n\n" + (root / "CHANGELOG.md").read_text(encoding="utf-8"), encoding="utf-8"), "newest section is 0.0.0"),
     ("changelog repeats a version", duplicate_current_version, "has more than one section"),
     ("license edited but packaged NOTICE not", edit("LICENSE", "2026 ByteTrue", "2027 ByteTrue"), "must contain the repository LICENSE verbatim"),
     ("packaged NOTICE loses Matt attribution", edit("skills/bw/NOTICE.md", "Copyright (c) 2026 Matt Pocock", "Copyright (c) 2026"), "must keep the Matt Pocock upstream attribution"),
     ("packaged NOTICE loses CodeStable attribution", edit("skills/bw/NOTICE.md", "Copyright (c) liuzhengdong (CodeStable", "Copyright (c) someone (CodeStable"), "must keep the CodeStable upstream attribution"),
-    ("project memory deleted", delete("bywork/memory/project.md"), "bywork/memory/project.md: file is missing"),
+    ("packaged NOTICE loses write-notes-like-deepseek attribution", edit("skills/bw/NOTICE.md", "Copyright (c) 2026 czm15053", "Copyright (c) 2026 someone"), "must keep the write-notes-like-deepseek upstream attribution"),
+    ("project constraints doc deleted", delete(PROJECT_DOC), f"{PROJECT_DOC}: file is missing"),
 ]
 
 
@@ -136,6 +138,10 @@ def run(root: Path) -> tuple[int, str]:
 def fresh_copy(base: Path, name: str) -> Path:
     target = base / name
     shutil.copytree(ROOT, target, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    # Git checkouts do not recreate empty lifecycle directories.
+    for directory in sorted(target.rglob("*"), reverse=True):
+        if directory.is_dir() and not directory.is_symlink() and not any(directory.iterdir()):
+            directory.rmdir()
     return target
 
 
@@ -148,7 +154,7 @@ def main() -> int:
             print(output)
             print("FAIL clean copy: checker must pass before planted cases mean anything")
             return 1
-        print("ok   clean copy passes")
+        print("ok   clean copy without empty directories passes")
         for index, (name, plant, expected) in enumerate(CASES):
             root = fresh_copy(base, f"case{index}")
             plant(root)

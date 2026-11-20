@@ -1,0 +1,768 @@
+{
+  "files": {
+    "process/2026-11-15-v2-readiness.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "d3fc856e78a13686209736dbe87d1bdd3c7f557999ed534c3a30e69754e3a4f2"
+    },
+    "process/2026-11-16-eval-standardization.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "a7f99276821f2a537e079c6c445b40c6b9d0197b39c8822af9553f39a97fc5e8"
+    },
+    "process/2026-11-16-large-repo-compaction.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "46d902828c45bdf153c0e772aed287b9c585d7a842fa676a5927ba0598839e22"
+    },
+    "process/2026-11-17-rename-bywork.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "c0ccb71289d452b303b5b142d02a5ae710609c72603f568b5ad02409e0136122"
+    },
+    "process/2026-11-17-v2-delivery.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "381e254e67be0d6ada03c36fc280bbaea41f553a396d7482d012b434bd5ff84d"
+    },
+    "process/eval-standardization/evaluation/README.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "c0cfe23f0c279c637c41141b8ef07e404f5705b68fe880ce2647f64c3108b864"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "be5cd1f0f6f5fab3e8e59b1fcfd98264b002a75aac085df9f292638d998916a4"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/byissue/work/ledger-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "b89c6dd72350265ad62f990c8f4dcb5863f4e4501fed847057d2422895ddfb85"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/byissue/work/ledger-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "9dbfa34088b5f95c21aa93f9acb7cf1813a0f1b75483f3d334595784938e3e81"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "bcf247e3e24f81e59384aa5436b4470ce09e16283868bac9be5cb6c64c299791"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "32bebcf6461a985f0225d1310643b9631a703ca3388a3281f991a8a0611ccc55"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "e1b93ce5c65ea2e7ea9750b77b9201695f61bee0c21a7f18a8a78ec1d7e1530c"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a59f687fd7b2db314e88c51b9a2a1dccee2c358ccd0a8c8ad8f01db37f092e9"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "250db35e99cc8f3d28c32b6e63f99a68ebdfe703029c02ab6b47f067f541f680"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "73885eff805e5afc40397b38d8d46f7df4955e88abb29565ef22d143e9a72e36"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/byissue/work/ledger-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "1bdbfb1dcfa9763c8f4e62a8d6d13aa7454410b0c15d3fc87dcbec71fcb8adcf"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/byissue/work/ledger-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "9dbfa34088b5f95c21aa93f9acb7cf1813a0f1b75483f3d334595784938e3e81"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "ca63738bbc90c7db51324c32276cf63109d5a973969f1074934325b0af9df2d9"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "32bebcf6461a985f0225d1310643b9631a703ca3388a3281f991a8a0611ccc55"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "9e7cae279f195d1194d92caddebc9fde6e1a7ec747a44c6970b514cd223ac9e5"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "382ea8b3f29b788b34b2b39a984516721dda6d5cd75dc27c0de980b0b4b990e1"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/phase-2/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "4abc4c40011ec945c38b007cebd5631decfe5121c7a9f299baf1e9f8bcad4476"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "a2cce5a3be00a59164bb1eea99f5462d330b95ad86c68e094e5a7ea29b8b305a"
+    },
+    "process/eval-standardization/evaluation/baseline-ledger/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "06f549ea9929aef4bb2e737f696890cea4a50b95ccbcbf05ff4d54723edbc3c3"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "477fa6f696433e5906e7458d4c96085691954961dc4b7925e3639ad6a0a7d66e"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/project/byissue/memory/error-retry.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "2db0fdb8983783b0e4c194ce2bfd39eec0884e8ad6ce352407025e1c5d12d97c"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/project/byissue/memory/export-order.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "49cf68e0cd6a4fe6e651c0b0d312df47028b522ad5fb1d640aa5bbc9df487467"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/project/config.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "1662ec29c9e6b88877d44d8f6fbc55b21ad741ef43268de13270712e81a52bff"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "32bebcf6461a985f0225d1310643b9631a703ca3388a3281f991a8a0611ccc55"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3f37e5075c321339d564e68c1b46c72f5720d459cd4f4b5bcf9bc3d6e358ab6d"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "66cc66995ce3e8d4dae022697b34a3c86f69dc2a407efc812a83c86b0d510fd2"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "621f573e12a02d9adf702ef7aa6193742fdffc0c3c20168cf7047b9919674b23"
+    },
+    "process/eval-standardization/evaluation/baseline-memory/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "cfd7e273dd2d490400ff98876e7655cfe4d7e0b36fa0de369b646c750ec27eba"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "be5cd1f0f6f5fab3e8e59b1fcfd98264b002a75aac085df9f292638d998916a4"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/byissue/work/ledger-cli/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "a7049eac6193efcfd6222d6cbf127427c490984bf760455c2b18351939337810"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/byissue/work/ledger-cli/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "96d663ac63326fd34e8146583e7353674419c80e14857872b2ce225974ceabc8"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "c4e9e0a821695299bee44aafa8f1f2013cc7f409137154dd77312b132d08c00a"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "5c3cf4c2c70d0ce1f21bbee938c1cf49bff6b9e07ac2e4022755b6990cf9af18"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "17d755395de1f421437933f4b86eb3166c3882a30a2e020de43c54bf3a3753e6"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a59f687fd7b2db314e88c51b9a2a1dccee2c358ccd0a8c8ad8f01db37f092e9"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "1de033ccb12398aa8b3d08ed47c19c9ddcf977ab67244958ca55bb7426ff9420"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "73885eff805e5afc40397b38d8d46f7df4955e88abb29565ef22d143e9a72e36"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/byissue/work/ledger-cli/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "bc6f509e069c23d8b4954e687b6a1003c5ff99b5c52963dd93b29c4ecf38cbd1"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/byissue/work/ledger-cli/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "96d663ac63326fd34e8146583e7353674419c80e14857872b2ce225974ceabc8"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "3b7e7e1088030c756a6a3a4642251c25950406d881d3cfe6a89081f93544baa0"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "5c3cf4c2c70d0ce1f21bbee938c1cf49bff6b9e07ac2e4022755b6990cf9af18"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "b5732b4dae90d0b845b3e9ade8c0b59f2c219c7c76839887b1ea4c8dd08017ba"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "382ea8b3f29b788b34b2b39a984516721dda6d5cd75dc27c0de980b0b4b990e1"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/phase-2/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "44b0c74b28fa6a4b6d21594e5bb0b51f2240f09a6be9213db4a40320fdbe73d8"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "71ba346e1432da96b329c06e93c77aec2f9938a20bb8eecbf39d0897b98f1746"
+    },
+    "process/eval-standardization/evaluation/candidate-ledger/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "0ad983395af4145ad4ffef40f4f0f04ff76cd780406b43061ea096e3b7d1984e"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "477fa6f696433e5906e7458d4c96085691954961dc4b7925e3639ad6a0a7d66e"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/project/byissue/memory/export-order.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "73bc6c5ac8333b612be09416f7d547b1a22077710c0aa4f45b0a7a5187ed81a0"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/project/byissue/work/error-retry/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "1bd84045a3112ae6884068f9de1b032825285c03d9fc504e3a2dc3a1f0ebbf18"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/project/config.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "1662ec29c9e6b88877d44d8f6fbc55b21ad741ef43268de13270712e81a52bff"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "5c3cf4c2c70d0ce1f21bbee938c1cf49bff6b9e07ac2e4022755b6990cf9af18"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3f37e5075c321339d564e68c1b46c72f5720d459cd4f4b5bcf9bc3d6e358ab6d"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "849f14a4094958bc52fd7c1df20f05a6c1d27fec80254a233538af11b38c4c43"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "19e8ef9ca654e6592a8152ca3315898dee317cd380001cbe6f7596262bb63917"
+    },
+    "process/eval-standardization/evaluation/candidate-memory/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "c39e505bb271f4f705d9fbbb416fd15a4a5d1fc6d3e0f9bf718aaf90df48df3f"
+    },
+    "process/eval-standardization/evaluation/candidate-skill.patch": {
+      "archived_at": "2026-11-20",
+      "sha256": "3f3174175092917d13b7d5e1927b14622f26e68dffea187fc95f19fd56784704"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "477fa6f696433e5906e7458d4c96085691954961dc4b7925e3639ad6a0a7d66e"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/project/byissue/memory/export-order.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "959110b0d376e93046352454182cacbf13aa6e222aba5d30b486bc0e89341cdb"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/project/config.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "1662ec29c9e6b88877d44d8f6fbc55b21ad741ef43268de13270712e81a52bff"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "c5463f918b7760a62abaac82f39ec810be61edc74f574c718ae6e8db89c30e02"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3f37e5075c321339d564e68c1b46c72f5720d459cd4f4b5bcf9bc3d6e358ab6d"
+    },
+    "process/eval-standardization/evaluation/final-memory/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "7c6c0d57e6fa6c117f9a7db07e27696f3c4c5d0661605e12f718a4bf574de5cc"
+    },
+    "process/eval-standardization/evaluation/final-memory/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "7764a3e6dd9b54aa835aeed421dd19c756664b93a12d1a6caa64b02b9d6f9cbb"
+    },
+    "process/eval-standardization/evaluation/final-memory/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "94af4026869cd074f0b594fc74ebca1a28fda1c86a33ef85bc8c1a911ed75a8b"
+    },
+    "process/eval-standardization/evaluation/final-skill.patch": {
+      "archived_at": "2026-11-20",
+      "sha256": "cf1be8f72f6b13b8fce1a2992a5a8ef697f820bce1777848614c98e67bb25f4c"
+    },
+    "process/eval-standardization/evaluation/metrics.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "835899080772a5107b08d221f5c1eed3caead5cf70283fb66e7074569899dca3"
+    },
+    "process/eval-standardization/evaluation/release-check.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "c96fd6daf2218d489d0db44d1cde7d5467ced5c1991f11f3f67dc88d76f04fae"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "be5cd1f0f6f5fab3e8e59b1fcfd98264b002a75aac085df9f292638d998916a4"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/byissue/work/ledger-csv-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "9456d764836d1b28791353b05d6eefe7f75d786d6b5c8a621858423fce457a9c"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/byissue/work/ledger-csv-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "49362763a3db9e8d2fbf3b68934c65b425094ec76b9e90559ed526ce53621ecd"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "7fe9d7bed367b28309584cc174f2dfa6396f3bc3e723c2e4b031dbcb0e101c57"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "c5463f918b7760a62abaac82f39ec810be61edc74f574c718ae6e8db89c30e02"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/project/tests/test_ledger_migrate.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "f0bc588e2300335710abcb2a93f5db536b820d38fdd25e87929986ae87cb6b91"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a59f687fd7b2db314e88c51b9a2a1dccee2c358ccd0a8c8ad8f01db37f092e9"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "b78e8b89a21b91ec96e812b4b4a3155aa39cb7e29f355a08e073b7f424e28a63"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "be5cd1f0f6f5fab3e8e59b1fcfd98264b002a75aac085df9f292638d998916a4"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "9229b2898f039fc4c288e4f35b5c3e08e40680affa69578b48eb891937b462b8"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/byissue/work/ledger-csv-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "fed1ca103c38afd86ee11b0c158be30bac403c35b561581de5edde9cd1ee65f9"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/byissue/work/ledger-csv-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "5ebe24c16bf87a311eb6c678d3635bb88b5b2c5dc90b6da9e9f12dcf4e784ca3"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "9217a496df061aec4900ca9059bc96b0559395ec7d4c7aef8e9290cbb147d9c8"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "c5463f918b7760a62abaac82f39ec810be61edc74f574c718ae6e8db89c30e02"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/tests/test_ledger_migrate.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "60335ff6acb4f3fa608e862d39e37c23da54b24727a34070f62a4b30f24625e0"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "382ea8b3f29b788b34b2b39a984516721dda6d5cd75dc27c0de980b0b4b990e1"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/phase-2/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "a409cfc3cbff6b2f380ae8428aad7802cee2936ca73df630bbbd77c751af88d2"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "a5a6184c1a606a60d276d86c43e22ae8fb2b8bf803c4966d62cd93d2052b483a"
+    },
+    "process/eval-standardization/evaluation/revision-2-ledger/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "5afe4e562c8fe9a5f0209ce73fdc494a3d88e9a9d15f4e7b5d9bd950feb2f7e6"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "be5cd1f0f6f5fab3e8e59b1fcfd98264b002a75aac085df9f292638d998916a4"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/byissue/work/bill-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "7a7a41b4a6206d0cbf216a356f84900c63b842f301e5885d500ac23339e82ad2"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/byissue/work/bill-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "2a726e5ec9273694d9908342ce8d46aaef12db0c9b76162d8a2eb16a3c4649c6"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "add461ba960e494854b85784fe705b70f01d20a57a8d85883613b346c34a9a1b"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "44300da43b90ba280d02ba107d02c6ceca4e96cbd712560c88e2995a8eed0a4a"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "132644ce1937684c9db86cbb0eaefbd9509d969fa990e61f6ca1261523248230"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a59f687fd7b2db314e88c51b9a2a1dccee2c358ccd0a8c8ad8f01db37f092e9"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "ca69984902bd51ba2fd07ef55e21c197cc49bafb80d2bd31e72e14039d369085"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "73885eff805e5afc40397b38d8d46f7df4955e88abb29565ef22d143e9a72e36"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/byissue/work/bill-migration/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "7a5cfcfc53c8c06986a274dcccef5728713127b6ed581d51867f9e471aa2a4c2"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/byissue/work/bill-migration/scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "2a726e5ec9273694d9908342ce8d46aaef12db0c9b76162d8a2eb16a3c4649c6"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "80e229610c2160bd4d0d67a3c1367a1c86540863b43b4b6c61ccf7cf35a219e2"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "44300da43b90ba280d02ba107d02c6ceca4e96cbd712560c88e2995a8eed0a4a"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/project/tests/test_ledger.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "ac728ce6b063e069537dbaa620e318dc8d50480506c7be6d4313ab871b253281"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "382ea8b3f29b788b34b2b39a984516721dda6d5cd75dc27c0de980b0b4b990e1"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/phase-2/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "10f2a793212796ce65a4c32cd90c3055f00c4e20024138b2c29bf91a8e2bd3fa"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "a0a478dc94c0edc488819953696ac96ce265b846abae3a03b7646c576c5ccdf7"
+    },
+    "process/eval-standardization/evaluation/revision-3-ledger/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "cdfe5df9d707e7617caf3e1d93342908d75240088d3707fae25dffe93f021106"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/acceptance.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "477fa6f696433e5906e7458d4c96085691954961dc4b7925e3639ad6a0a7d66e"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/acceptance.log.stderr": {
+      "archived_at": "2026-11-20",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/project/byissue/memory/export-order.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "8ba51047df101cc093e408a069655dc877adf967ecb25c659eeeb5fb994b7c19"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/project/byissue/work/error-retry/index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "facc91a752937f7debaac2b7c02cce8a7cb94d4922cb464f6bfecb1aadd67377"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/project/config.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "1662ec29c9e6b88877d44d8f6fbc55b21ad741ef43268de13270712e81a52bff"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/project/skills-lock.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "44300da43b90ba280d02ba107d02c6ceca4e96cbd712560c88e2995a8eed0a4a"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/prompt.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3f37e5075c321339d564e68c1b46c72f5720d459cd4f4b5bcf9bc3d6e358ab6d"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/phase-1/trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "5ce88e2e09afd534168e71bd432c70b95d6fcd43ff671e4c29c162b89de64179"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/report.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "5623202f144b0eea80fb94f3e9681826f5173d0026ae3cd6174534f7c7fa35a2"
+    },
+    "process/eval-standardization/evaluation/revision-3-memory/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "ee7abdff92abb9b1ce2e0c8d5a831d27ee4857a4d5c8cbf10478bc91c6271a77"
+    },
+    "process/eval-standardization/evaluation/revision-3-skill.patch": {
+      "archived_at": "2026-11-20",
+      "sha256": "a960b2084c6b1fcfced2701dd295af8308379f3e9821e613db1b84a07fb9b904"
+    },
+    "process/eval-standardization/scope.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "e171188154d774da45dc94c25b0477333f024a667db44df9943f5b7f085122a1"
+    },
+    "process/large-repo-compaction/release-check-final.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "4d8daac1fce00039e2506c908d86026349f283f3676ead1d16cd325fdc64f330"
+    },
+    "process/large-repo-compaction/release-check.log": {
+      "archived_at": "2026-11-20",
+      "sha256": "8afae2a5a0039d480392631c5473d0df52b413ce7c96cfe81501056e3d66fd22"
+    },
+    "process/large-repo-compaction/review-browser.spec.ts": {
+      "archived_at": "2026-11-20",
+      "sha256": "d0cb8a3254595543cd985c0d5a7dc9e078642dbb3684557463b34d9c659cda2d"
+    },
+    "process/large-repo-compaction/review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "ab71cf8b6639e31be853d15f4e64c88f3f93664e2c07cfc05b321e3ff31ab5cd"
+    },
+    "process/large-repo-compaction/review_test.go": {
+      "archived_at": "2026-11-20",
+      "sha256": "02771d84d443f6dd93a3aabe7cc02daf6635e3fefd89f1f96fc56bad5913ec93"
+    },
+    "process/large-repo-compaction/scope.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "a8432d6838efebba15e4580975146019b90fdbcb2c314aeba2a483a64e5d4ac2"
+    },
+    "process/rename-bywork/rename-checklist.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a5011b1dd00e691ab9cac0a790e4fdc2b49d7f7e6c7b95de3fe3bd2769421d2"
+    },
+    "process/v2-delivery/baseline-v2-review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "e775ec3a8fa979b169edc949ac79b648838cd27f3216ca10dd5c74e89ba6b645"
+    },
+    "process/v2-delivery/candidate-1-prefix-review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "eeac6a4096dc7b461e7c1de8b54325dd2fc2350f9f7da54c37ef4b624150e983"
+    },
+    "process/v2-delivery/candidate-1-review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "c7eefc958e637ed6b4c722b15daa1921b329c68e2521432930d337ed31271d49"
+    },
+    "process/v2-delivery/final-evaluation-report.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "04d5d1db6f5cbe0a5e28362a8cfe6e984e36e26c71657a735b7808d1dcc9b26b"
+    },
+    "process/v2-delivery/principles-review.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "7abde8b2bdb6ebdea7b767f84c925f86f87fbc2284c5f3342684cc57d0c9bbd1"
+    },
+    "process/v2-delivery/provenance-audit.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "7c4f2723410385a57e8ed12cae2a0e0a7d23606f50a9e031403bba6acd1f0dd1"
+    },
+    "process/v2-delivery/research-direction.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "7e9ae36aeae2e6a03265b54c98e82c2cdf07f80c4de585559c09dbe1ec9d75dd"
+    },
+    "process/v2-delivery/research-evidence-matrix.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "ad3100c89045a073d2641180938d88d381462d80e7efe5ef0ca80ded0e61e894"
+    },
+    "process/v2-readiness/archive-manifest.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "d38268e1f2884fcc6c233f2e776e5d0c4f66abbfcbb76d883b3a1f8be14ae4bf"
+    },
+    "process/v2-readiness/evaluation/README.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "da86ab2f47a86e911fd4cd2b00ba7a7792ce8b00966c41909b97ccc9925ed794"
+    },
+    "process/v2-readiness/evaluation/acceptance.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "74473253263644781fcb01792cf5d7e084be609a823443cf8d0c735d70a4fafb"
+    },
+    "process/v2-readiness/evaluation/ledger-result.py": {
+      "archived_at": "2026-11-20",
+      "sha256": "afd29903c3a43d7a0fd17c5c45ef7631db109867aac4ef2fa5e34a4e3d7012e1"
+    },
+    "process/v2-readiness/evaluation/legacy/01.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "a10a72b36e0e6c8e76e5f11e1488ac2af59b71a2f52d89fe5be8537cb954a8bf"
+    },
+    "process/v2-readiness/evaluation/legacy/02.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "22c2c68ddfcb22e391c77d1771d403fcc35b819c4ebc761b0eb7706f848285cc"
+    },
+    "process/v2-readiness/evaluation/legacy/nested/03.csv": {
+      "archived_at": "2026-11-20",
+      "sha256": "ef8cdf810294a0a76dc6c69118b02fa6a7be1e3227650ad6c360b0722fc9b355"
+    },
+    "process/v2-readiness/evaluation/metrics.json": {
+      "archived_at": "2026-11-20",
+      "sha256": "589c53c55154ae4686e5eb4524a2f0f91b81bbe9ab9302db779472ea5ca2a308"
+    },
+    "process/v2-readiness/evaluation/phase-1-artifacts/memory-billing-ledger-contract.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "f43c7be525aa4f7eaa7e22700a524861aebd6ce88e9498f040ec5f06bb774ae4"
+    },
+    "process/v2-readiness/evaluation/phase-1-artifacts/work-billing-ledger-migration-index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "8a97ab9e01c29624c9de343fdae45cb92b56d26ce6b7c7f3c6e8db095a606d1f"
+    },
+    "process/v2-readiness/evaluation/phase-1-artifacts/work-billing-ledger-migration-scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "7e246ebdcc12b88526e739a4e759860d7f11e733f2c2d808fdb378aa32e35831"
+    },
+    "process/v2-readiness/evaluation/phase-1-trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "af02fd4c5fc950f8f7dd8df0a67d34f55067647923bba170d0b7a349c7867aad"
+    },
+    "process/v2-readiness/evaluation/phase-1.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "3a59f687fd7b2db314e88c51b9a2a1dccee2c358ccd0a8c8ad8f01db37f092e9"
+    },
+    "process/v2-readiness/evaluation/phase-2-artifacts/memory-billing-ledger-contract.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "cf462be89d8a4583444b508d3f8babfd602ead052c59a35c71e0e9bad68b0461"
+    },
+    "process/v2-readiness/evaluation/phase-2-artifacts/work-billing-ledger-migration-index.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "da4f40ce9c65d1d53733e6c325596ed519906f267cc0fddc4e3269abf322c10e"
+    },
+    "process/v2-readiness/evaluation/phase-2-artifacts/work-billing-ledger-migration-scope.md.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "98eaa90cfd90ad3538c66ed98a06c4f29fb89126ba8546c8cb8cbbe30423de53"
+    },
+    "process/v2-readiness/evaluation/phase-2-trace.jsonl": {
+      "archived_at": "2026-11-20",
+      "sha256": "4f405e12cfe109530ca8bc8b0ada1152c2e46db5200756bcce0fbe069d71c01b"
+    },
+    "process/v2-readiness/evaluation/phase-2.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "382ea8b3f29b788b34b2b39a984516721dda6d5cd75dc27c0de980b0b4b990e1"
+    },
+    "process/v2-readiness/evaluation/test_migrate.py.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "98b4a1cc707a25decd10fb8d0cacce72c5a50c052e3c3f3f9c9306d475485320"
+    },
+    "process/v2-readiness/evaluation/test_report.py.txt": {
+      "archived_at": "2026-11-20",
+      "sha256": "ea2e943a5d4fdb9309e4f14c42b17dd8f3c0d67dafee4e04772f2e5445c0950b"
+    },
+    "process/v2-readiness/scope.md": {
+      "archived_at": "2026-11-20",
+      "sha256": "89bd280c81a9d3ec68449461ca8a34f20a517bd84539f70de8e8b0dd9f34a650"
+    }
+  }
+}

@@ -2,8 +2,7 @@
 """发布前检查 ByWork 单技能仓库的结构和可达路径。
 
 检查版本记录、技能包布局、许可证、技能内路径、当前文档里的仓库路径、
-工作区隔离和 work 模板的检查点字段。工作流语义由人工审查和真实使用验证，
-这里不复制一份提示词契约。
+工作区四态隔离和 proposed 模板的检查点字段。
 """
 from __future__ import annotations
 
@@ -17,16 +16,15 @@ SKILL = ROOT / "skills/bw"
 
 VERSION_RE = re.compile(r"^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$")
 LINK_RE = re.compile(r"\[[^\]]*\]\(<?([^)#>]+)>?(?:#[^)]*)?\)")
-PATH_RE = re.compile(r"`((?:references|templates|scripts|agents)/[\w./-]+\.(?:md|py|yaml))`")
+PATH_RE = re.compile(r"`((?:references|templates|scripts|agents|assets)/[\w./-]+\.(?:md|py|yaml|html))`")
 REPO_ONLY_NAMES = ["WHY BYWORK.md", "CHANGELOG.md"] + sorted(
     {p.name for p in (ROOT / "tools").rglob("*") if p.is_file() and "__pycache__" not in p.parts}
 )
 REPO_ONLY_RE = re.compile("|".join([r"\bVERSION\b"] + [re.escape(name) for name in REPO_ONLY_NAMES]))
 
-# These files are loaded by the host or are the package's main entry. Everything else
-# must be reachable from one of them or from a Markdown link in the package.
-ENTRY_FILES = {"SKILL.md", "NOTICE.md", "agents/openai.yaml", "scripts/init_bywork.py"}
+ENTRY_FILES = {"SKILL.md", "NOTICE.md", "agents/openai.yaml", "scripts/bw.py", "assets/board.html"}
 WORK_FIELDS = {"kind", "status", "current_unit", "next_action", "must_hold", "proof_gap"}
+WORKSPACE_DIRS = {"proposed", "implemented", "rejected", "archived"}
 
 
 def check_version(report):
@@ -80,6 +78,8 @@ def check_license_travels(report):
         report("skills/bw/NOTICE.md", "must keep the Matt Pocock upstream attribution and copyright line")
     if "CodeStable-Lite" not in text or "Copyright (c) liuzhengdong (CodeStable" not in text:
         report("skills/bw/NOTICE.md", "must keep the CodeStable upstream attribution and copyright line")
+    if "write-notes-like-deepseek" not in text or "Copyright (c) 2026 czm15053" not in text:
+        report("skills/bw/NOTICE.md", "must keep the write-notes-like-deepseek upstream attribution and copyright line")
 
 
 def check_skill_layout(report):
@@ -126,29 +126,27 @@ def check_skill_links(report):
 
 
 def check_work_template(report):
-    path = SKILL / "templates/work.md"
+    path = SKILL / "templates/proposed.md"
     if not path.is_file():
-        return report("skills/bw/templates/work.md", "work template is missing")
+        return report("skills/bw/templates/proposed.md", "proposed template is missing")
     lines = path.read_text(encoding="utf-8").splitlines()
     if not lines or lines[0].strip() != "---":
-        return report("skills/bw/templates/work.md", "frontmatter is missing")
+        return report("skills/bw/templates/proposed.md", "frontmatter is missing")
     try:
         end = lines.index("---", 1)
     except ValueError:
-        return report("skills/bw/templates/work.md", "frontmatter is not closed")
+        return report("skills/bw/templates/proposed.md", "frontmatter is not closed")
     fields = {line.split(":", 1)[0].strip() for line in lines[1:end] if ":" in line}
     if fields != WORK_FIELDS:
         report(
-            "skills/bw/templates/work.md",
+            "skills/bw/templates/proposed.md",
             f"frontmatter fields must be {sorted(WORK_FIELDS)!r}, found {sorted(fields)!r}",
         )
 
 
-# These documents state the repository's current truth. Historical records can quote
-# paths that no longer exist and therefore stay outside this check.
 HISTORY_FILES = {"CHANGELOG.md"}
 REPO_LINK_RE = re.compile(r"\[[^\]]*\]\((<[^>]+>|(?:[^()\s]|\([^()\s]*\))+)\)")
-REPO_PREFIX = r"(?:tools|skills/bw|bywork/(?:work|memory|vision))/"
+REPO_PREFIX = r"(?:tools|skills/bw|bywork/(?:proposed|implemented|rejected|archived|vision))/"
 COMMAND = r"(?:bash|sh|python3|npx)(?:\s+-\S+)*\s+"
 REPO_PATH_RE = re.compile(rf"`(?:{COMMAND})?(?:\./)?({REPO_PREFIX}[^`\s]*[\w/])")
 INLINE_COMMAND_RE = re.compile(rf"{COMMAND}(?:\./)?({REPO_PREFIX}[^\s`]*[\w/])")
@@ -160,9 +158,8 @@ def check_repo_paths(report):
         rel = source.relative_to(ROOT)
         if ".git" in rel.parts or rel.parts[0] == "skills" or rel.as_posix() in HISTORY_FILES:
             continue
-        # Hidden dirs are host wiring, not repo docs: .agents/skills/bw is a symlink
-        # to skills/bw for self-hosting, and scanning it again as a repo document
-        # would demand bywork/vision/ exist in a repo that creates it on demand.
+        if rel.parts[:2] == ("bywork", "archived"):
+            continue
         if any(part.startswith(".") for part in rel.parts[:-1]):
             continue
         lines = source.read_text(encoding="utf-8").splitlines()
@@ -185,15 +182,19 @@ def check_repo_paths(report):
 
 def check_workspace_layout(report):
     workspace = ROOT / "bywork"
-    for name in ("work", "memory"):
-        if not (workspace / name).is_dir():
-            report(f"bywork/{name}", "directory is missing")
     if workspace.is_dir():
+        allowed = WORKSPACE_DIRS | {"vision"}
         for entry in sorted(workspace.iterdir()):
-            if entry.name not in {"work", "memory", "vision"} or not entry.is_dir():
-                report(entry.relative_to(ROOT).as_posix(), "unexpected workspace entry; only work/, memory/, and vision/ belong here")
-    if not (workspace / "memory/project.md").is_file():
-        report("bywork/memory/project.md", "file is missing")
+            if entry.name.startswith("."):
+                continue
+            if entry.name not in allowed or not entry.is_dir():
+                report(
+                    entry.relative_to(ROOT).as_posix(),
+                    "unexpected workspace entry; only proposed/, implemented/, rejected/, archived/, and vision/ belong here",
+                )
+    constraints = workspace / "implemented/architecture/2026-11-18-project-constraints.md"
+    if not constraints.is_file():
+        report("bywork/implemented/architecture/2026-11-18-project-constraints.md", "file is missing")
 
 
 def main() -> int:

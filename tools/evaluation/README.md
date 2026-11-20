@@ -1,6 +1,6 @@
 # bi 效果评测
 
-用真实安装的技能、pi 新会话和独立验收检查行为。代码通过、工作流通过、效率变化分别报告。最初的账单评测与失败证据见[历史记录](../../bywork/work/v2-readiness/evaluation/README.md)。
+用真实安装的技能、pi 新会话和独立验收检查行为。代码通过、工作流通过、效率变化分别报告。最初的账单评测与失败证据见[历史记录](../../bywork/archived/process/v2-readiness/evaluation/README.md)。
 
 ## 运行一次
 
@@ -118,9 +118,9 @@ python3 tools/evaluation/cases/byspace-schedules/acceptance.py \
 
 压缩事件必须对应持久会话里的原生摘要，失败或未完成尝试保留。没有触发压缩时计数为零，接续质量保持无法判定。运行时长、累计 token 和压缩次数都不能单独证明实现质量。
 
-首轮完整样例见[大型重建评审](../../bywork/work/large-repo-compaction/review.md)：原版标定、自然压缩、首次验收、补充公开 API/CLI 与浏览器探针、25 项来源对账都已留存。补充探针在模型结束后同时对原版与重建版运行，单独保存为 review 证据，不覆盖首次验收。动作顺序和文件访问回到完整工具记录判断，压缩摘要附带的文件清单可能漏掉 bash 内的读写。
+首轮完整样例见[大型重建评审](../../bywork/archived/process/large-repo-compaction/review.md)：原版标定、自然压缩、首次验收、补充公开 API/CLI 与浏览器探针、25 项来源对账都已留存。补充探针在模型结束后同时对原版与重建版运行，单独保存为 review 证据，不覆盖首次验收。动作顺序和文件访问回到完整工具记录判断，压缩摘要附带的文件清单可能漏掉 bash 内的读写。
 
-当前任务明确列出精确兼容接口，且验收已经包含首轮补测。它与首轮输入不同；比较技能版本时须同时使用当前冻结任务，不能直接将首轮数值当成同条件基线。当前持续优化的交付判据及每轮依据见[交付验证 work](../../bywork/work/v2-delivery/index.md)。
+当前任务明确列出精确兼容接口，且验收已经包含首轮补测。它与首轮输入不同；比较技能版本时须同时使用当前冻结任务，不能直接将首轮数值当成同条件基线。当前持续优化的交付判据及每轮依据见[交付验证 work](../../bywork/archived/process/2026-11-17-v2-delivery.md)。
 
 独立探针的每条精确期望都要能在被测项目可见要求中找到依据。原版行为只能证明兼容差异；缺少公开依据时补任务契约并冻结新输入，先前结果单列输入缺口。调度任务明确区分普通延迟 tick 与重启恢复的跳槽规则，CLI 明确位置提示词形状。
 
@@ -132,9 +132,13 @@ python3 tools/evaluation/cases/byspace-schedules/acceptance.py \
 
 `--no-skill` 运行器不安装技能，并在验收前核对项目内没有意外的 `.agents/skills/bw`（对照被污染即判失败）；报告记录 `arm` 字段。工作流结论仍按 B 臂 trace 和最终 work 的结果判据审查，与业务通过率分开报告。
 
+先按上文准备六份独立输入到运行目录，命名为 `ab-control-01` 至 `03`、`ab-skill-01` 至 `03`，各自包含 `seed.json` 和 `project/`。显式传入冻结的技能源仓库、两臂用例及已配置的模型：
+
 ```bash
-bash tools/evaluation/ab_driver.sh   # 交替跑 ab-nobi-01..03 与 ab-bi-01..03
+bash tools/evaluation/ab_driver.sh /path/to/runs /path/to/source /path/to/control-case /path/to/skill-case provider/model
 ```
+
+驱动依次交替运行三组；保留各次原始结果，任一子进程失败即在汇总中报告并以非零退出。它固定使用 thinking=max、400000 压缩阈值与每次 14400 秒上限。
 
 ## 维护用例和运行器
 
@@ -155,10 +159,10 @@ bash tools/evaluation/ab_driver.sh   # 交替跑 ab-nobi-01..03 与 ab-bi-01..03
 python3 -m unittest discover -s tools/evaluation -p test_runner.py -v
 ```
 
-离线检查使用 `tools/fixtures/ledger-known-good.py`（首次正确产物的副本）和 `tools/fixtures/ledger-bad-format.py`（真实格式错误产物的副本）。原始产物仍留在 `bywork/work/v2-readiness/evaluation/ledger-result.py` 与 `bywork/work/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py` 作历史证据；夹具是独立副本，整理历史记录不影响离线检查。
+离线检查使用 `tools/fixtures/ledger-known-good.py`（首次正确产物的副本）和 `tools/fixtures/ledger-bad-format.py`（真实格式错误产物的副本）。原始产物仍留在 `bywork/archived/process/v2-readiness/evaluation/ledger-result.py` 与 `bywork/archived/process/eval-standardization/evaluation/revision-2-ledger/phase-2/project/ledger.py` 作历史证据；夹具是独立副本，整理历史记录不影响离线检查。
 
-长期判定原则见[评测依据](../../bywork/memory/evaluation.md)。
+长期判定原则见[评测依据](../../bywork/implemented/testing/2026-11-18-evaluation-findings.md)。
 
 ## 复盘一次真实使用会话
 
-评测之外，用户日常用 `bw` 的真实会话同样是证据来源。复盘把一次真实会话变成技能修改候选：用 `tools/export-opencode-session.py --session <标题或 id>` 导出含推理与工具调用的原文（`--list` 按标题找），以原文为准核对当时的分档、验证与收尾，再按[真实会话复盘](../session-retro.md)的筛选标准决定改哪里。长期判定结论沉淀到[评测依据](../../bywork/memory/evaluation.md)。
+评测之外，用户日常用 `bw` 的真实会话同样是证据来源。复盘把一次真实会话变成技能修改候选：用 `tools/export-opencode-session.py --session <标题或 id>` 导出含推理与工具调用的原文（`--list` 按标题找），以原文为准核对当时的分档、验证与收尾，再按[真实会话复盘](../session-retro.md)的筛选标准决定改哪里。长期判定结论沉淀到[评测依据](../../bywork/implemented/testing/2026-11-18-evaluation-findings.md)。

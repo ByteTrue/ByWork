@@ -1,8 +1,5 @@
-# NOTICE
+# Notice & Attribution
 
-`bw` is an original work by ByteTrue, released under the MIT License:
-
-```text
 MIT License
 
 Copyright (c) 2026 ByteTrue (https://github.com/ByteTrue)
@@ -24,71 +21,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-```
 
-## Upstream material
+---
 
-The workflow core (SKILL.md, the action references, templates, and scripts) is original. A few principle references carry sentences adapted from upstream projects, used under their MIT Licenses. They are listed here by file; nothing else in the package derives from them.
+## CodeStable-Lite (MIT)
 
-### CodeStable
+Upstream: `https://github.com/codestable/CodeStable-Lite`
+Copyright (c) liuzhengdong (CodeStable / CodeStable-Lite)
 
-Three files contain sentences adapted from [CodeStable-Lite](https://github.com/codestable/CodeStable-Lite) by liuzhengdong:
+`references/economy.md` and the posture-routing philosophy in `SKILL.md` contain material adapted from CodeStable-Lite under the MIT License.
 
-- `references/economy.md`: the minimal-change ladder framing and the "no speculative abstraction" rule.
-- `references/quality.md`: the nine product-quality characteristics table framing (the characteristics themselves are the public ISO/IEC 25010 standard).
-- `references/ui-spec.md`: two of the "when a diagram is required" conditions.
+---
 
-```text
-MIT License
+## mattpocock/skills (MIT)
 
-Copyright (c) liuzhengdong (CodeStable, https://github.com/liuzhengdongfortest)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
-### mattpocock/skills
-
-Two files contain material from [mattpocock/skills](https://github.com/mattpocock/skills):
-
-- `references/grilling.md`: the body is a verbatim copy of the upstream `grilling` skill.
-- `references/domain-modeling.md`: the reading-side sentences are copied from the upstream `domain-modeling` skill.
-
-```text
-MIT License
-
+Upstream: `https://github.com/mattpocock/skills`
 Copyright (c) 2026 Matt Pocock
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+`references/grilling.md` is adapted from `mattpocock/skills` under the MIT License.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+---
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+## write-notes-like-deepseek (MIT)
+
+Upstream: `https://github.com/czm15053/write-notes-like-deepseek`
+Copyright (c) 2026 czm15053
+
+The lifecycle and retrieval guidance in `references/memory.md`, `references/archiving.md`, `references/writing.md`, and `references/review.md`, note templates, and `assets/board.html` are adapted from `write-notes-like-deepseek` under the MIT License.
+
+---
+
+## DeepSeek Harness (MIT)
+
+Upstream: `https://github.com/deepseek-ai/deepseek-harness`
+Copyright (c) 2026 DeepSeek
+
+Current-fact maintenance, partial supersession, and evidence-boundary guidance are adapted from the official Agent Notes conventions and records. The committed-baseline archive verification in `scripts/bw.py` follows `scripts/verify-archived-agent-notes.ts` at commit `e8f7b93a344964de3dca1ace9e72b6e4d6de87cb`. These adaptations are covered by the MIT license text above.

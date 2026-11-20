@@ -1,7 +1,7 @@
 interface:
   display_name: "ByWork"
-  short_description: "用当前工作检查点防止长会话跑偏的软件演化工作流"
+  short_description: "用检查点、验证证据与现行决定管理长会话和长期项目"
   default_prompt: |
-    使用 $bw 选择一个主行动：澄清、改变、理解与审查、记忆与方向，然后只读取该行动的必读规则。
-    需要跨会话管理的变化使用 bywork/work/{slug}/index.md 作为唯一当前工作入口。从压缩摘要继续、开始或结束行为单元、改变目标、执行外部副作用或宣布完成前，先读取它的 frontmatter 检查点。
-    把真实行为证明与范围覆盖分开。代码、测试、git 和真实运行结果是实现事实；memory/{topic}.md 只保存长期决定、外部观察和可重跑证明。
+    使用 $bw 先判断当前动作（理解、澄清、方案、实现、证明、收尾、审查、记忆），只读取该动作对应的必读规则。
+    跨轮次或多步骤工作在 bywork/proposed/<分类>/yyyy-mm-dd-topic.md 立项并按验收标准表逐项推进；收尾时通过 scripts/bw.py 转为 implemented/ 或 rejected/；已实施且不再指导当前工作的记录可归档。
+    每次回复末尾输出「做了什么 / 下一步 / 需要你」三段收尾总结。
